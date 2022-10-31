@@ -1,0 +1,82 @@
+@import '../../vars.scss';
+@import './brakePoint.scss';
+
+#home {
+  // slide_2========
+  .main {
+    .slide {
+      &.sl-2 {
+        .slide_inner {
+          .slide_picture {
+            @include pc {
+              &.p-1 img {
+                top: 50%;
+                transform: translateY(-40%) rotate(-12deg);
+              }
+
+              &.p-2 img {
+                top: 50%;
+                transform: translateY(-40%) rotate(15deg);
+              }
+            }
+
+            @include tablet_sm {
+              &.p-1 img {
+                max-height: 75vh;
+                transform: translateY(-50%) rotate(-12deg);
+              }
+            }
+
+            @include phone {
+              &.p-1 img {
+                top: 330px;
+                transform: translateY(-70%) rotate(-12deg);
+              }
+            }
+
+            @include content_height {
+              &.p-1 img {
+                transform: translateY(-40%) rotate(-12deg);
+              }
+
+              &.p-2 img {
+                transform: translateY(-40%) rotate(15deg);
+              }
+            }
+
+            @include phone_height {
+              &.p-1 img {
+                top: 40% !important;
+                transform: translateY(-46%) rotate(-12deg) !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  .sl-2 {
+    .p-1 {
+      left: -29vw;
+
+      img {
+        left: 0;
+        top: 13vh;
+        transform: rotate(-3.94deg);
+      }
+    }
+
+    .p-2 {
+      right: -29vw;
+
+      img {
+        max-width: 71vw;
+        right: -13vw;
+        top: 15vh;
+        transform: rotate(22deg);
+      }
+    }
+  }
+}

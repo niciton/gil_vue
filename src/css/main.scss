@@ -1,0 +1,75 @@
+@import './vars.scss';
+
+@include font("Inter", "Inter-Light", 300, "normal");
+@include font("Inter", "Inter-Regular", 400, "normal");
+@include font("Inter", "Inter-Medium", 500, "normal");
+@include font("Inter", "Inter-SemiBold", 600, "normal");
+
+// @import '@node/normalize.css';
+// // @import './fonts';
+
+@import './components/base.scss';
+@import './components/_header.scss';
+// @import './components/_footer.scss';
+ @import './components/_breadcrumbs.scss';
+// @import './promo/Error404.scss';
+// @import './promo/not_found.scss';
+
+
+body,
+html {
+  min-width: 360px;
+  transition: 0s;
+  font-family: "Inter", sans-serif;
+  padding: 0;
+  margin: 0;
+  color: $textGray;
+  letter-spacing: 0.03em;
+  font-size: 14px;
+  font-weight: 300;
+  transition: 0s;
+
+  &.lock {
+    overflow: hidden;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  line-height: 120%;
+}
+
+button,
+span, 
+img,
+svg,
+a {
+  transition: 0.3s;
+}
+
+ul,
+li,
+ol {
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+input {
+  outline: none;
+}
+
+button {
+  padding: 0;
+  border: none;
+  outline: none;
+  color: inherit;
+  cursor: pointer;
+}

@@ -1,0 +1,430 @@
+@import '../../vars.scss';
+@import '../../components/popup.scss';
+@import '../../components/card.scss';
+@import '../../components/table.scss';
+@import '../../components/popup_slider.scss';
+
+@import './order.scss';
+
+.main-content {
+    .card_body {
+        display: flex;
+        flex-wrap: wrap;
+
+        img.no-photo {
+            @include notebook {
+                width: 33%;
+            }
+
+            @include phone_big {
+                width: 45%;
+            }
+
+            margin: auto;
+            width: 210px;
+            height: 190px;
+        }
+
+        // slider=======
+        .slider {
+            @include pc {
+                width: 600px;
+                flex: 0 0 600px;
+            }
+
+            @include notebook {
+                width: 100%;
+                flex: 0 0 100%;
+            }
+
+            @include tablet_sm {
+                padding: 0 50px;
+            }
+
+            position: relative;
+            width: 800px;
+            flex: 0 0 800px;
+            display: flex;
+            align-items: center;
+
+            .slider_nav {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .slider_next,
+                .slider_prev {
+                    @include tablet_sm {
+                        position: absolute;
+                        z-index: 10;
+
+                        svg {
+                            transform: rotate(0deg);
+                        }
+                    }
+
+                    width: 37px;
+                    height: 37px;
+                    transition: background .3s,
+                    box-shadow .3s,
+                    color .3s;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    background: $yellow;
+
+                    &:disabled {
+                        pointer-events: none;
+                        opacity: 0;
+                    }
+
+                    &:hover {
+                        box-shadow: 0px 0px 0px 1px $black;
+                        color: $black;
+                        background: none;
+                    }
+
+                    svg {
+                        @include tablet_sm {
+                            transform: rotate(0deg);
+                        }
+
+                        transform: rotate(90deg);
+                        stroke: $gray;
+                    }
+                }
+
+                .tns-controls {
+                    display: none;
+                }
+
+                .slider_next {
+                    @include tablet_sm {
+                        right: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        margin-top: 0;
+                    }
+
+                    margin-top: 30px;
+                }
+
+                .slider_prev {
+                    @include tablet_sm {
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        margin-bottom: 0;
+                    }
+
+                    margin-bottom: 30px;
+                }
+
+                .tns-outer .tns-ovh {
+                    // height: 310px !important;
+                }
+
+                .slider_pagination {
+                    @include tablet_sm {
+                        display: none;
+                    }
+
+                    display: flex;
+                    flex-direction: column;
+                    // width: 125px;
+
+                    .slider_nav__item {
+                        padding: 10px;
+                        background: none;
+                        height: 90px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 5px;
+                        border: 2px solid #ffee0000;
+
+                        &.active {
+                            border: 1px solid $grayL;
+                        }
+
+                        img {
+                            display: flex;
+                            max-width: 105px;
+                            // max-width: 100%;
+                            max-height: 100%;
+                            // width: auto;
+                        }
+                    }
+                }
+            }
+
+            .tns-outer {
+                @include pc {
+                    max-width: 450px;
+                }
+
+                @include notebook {
+                    width: 100%;
+                    max-width: 100%;
+                    margin: 0 auto;
+                }
+
+                @include tablet_sm {}
+
+                // max-width: 600px;
+                width: 100%;
+            }
+
+            .card_slider {
+                @include notebook {
+                    width: 100%;
+                }
+
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+
+                .slide {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    img {
+                        display: flex;
+                        max-width: 100%;
+                    }
+                }
+            }
+        }
+
+        #card_popup {
+            .popup_wrap {
+                align-items: center;
+            }
+        }
+
+        // card_inf=======
+        .card_inf {
+            @include pc {
+                width: 340px;
+            }
+
+            @include notebook {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            margin-left: auto;
+            width: 370px;
+
+            .card_item {
+                max-width: 100%;
+                margin-bottom: 15px;
+
+                &.card_price {
+                    margin-bottom: 40px;
+                }
+
+                .item_title {
+                    font-size: 14px;
+                }
+
+                .item_value {
+                    font-size: 14px;
+
+                    &.oem-number_value {
+                        @include tablet {
+                            .arrow svg {
+                                width: 7px;
+                            }
+
+                            .oem-number_list {
+                                // left: 46%;
+                                padding-right: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .card_text {
+                @include pc {
+                    font-size: 14px;
+                }
+
+                @include notebook {
+                    text-align: center;
+                }
+
+                @include phone {
+                    text-align: left;
+                    font-size: 14px;
+                }
+
+                font-weight: 300;
+                margin-top: 50px;
+                font-size: 15px;
+
+                &~.popup .popup_wrap {
+                    align-items: center;
+                }
+
+                .popup_link {
+                    font-weight: 300;
+                    display: inline;
+                    text-decoration: underline;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+
+            .order_btn {
+                width: 160px;
+                margin: 30px auto;
+            }
+        }
+    }
+
+    .applicability_wrap {
+        position: static;
+        pointer-events: all;
+        opacity: 1;
+        display: block;
+
+        &::after {
+            margin: 10px auto;
+            position: static;
+            display: none;
+            transform: translate(0, 0);
+        }
+
+        &.load::after {
+            display: block;
+        }
+    }
+
+    .table_title {
+        @include tablet_sm {
+            margin-top: 30px;
+        }
+
+        margin-top: 60px;
+
+        span {
+            color: $textGray;
+
+        }
+
+        svg {
+            stroke: $textGray;
+        }
+    }
+
+    .table_body {
+        width: 100%;
+
+        tbody {
+            tr {
+                th {
+                    &:nth-child(2n+1) {
+                        width: 25%;
+                    }
+                }
+            }
+        }
+    }
+
+    .show_btn {
+        margin: 35px auto;
+
+        &.none {
+            display: none;
+        }
+    }
+
+    // other-goods=======
+    .other-goods {
+        .other-goods_title {
+            margin: 60px 0 30px;
+
+            svg {
+                stroke: $textGray;
+            }
+
+            span {
+                font-size: 16px;
+                margin-left: 15px;
+                text-transform: uppercase;
+            }
+        }
+
+        .other-goods_cards {
+            border-top: 1px solid $black10;
+
+            .card {
+                @include tablet_mid {
+                    padding: 25px 20px;
+                }
+
+                @include phone_big {
+                    padding: 30px 10px;
+                }
+
+                padding: 45px 40px;
+
+                .card_photo {}
+
+                .card_body {
+                    @include phone_big {
+                        margin-left: 0;
+                    }
+
+                    margin-left: 40px;
+                    flex-direction: column;
+
+                    .card_item {
+                        // max-width: 290px;
+
+                        .item_title {
+                            &.oem-number_value .oem-number_list {
+                                // @include tablet {
+                                //     padding-right: 20px;
+                                // }
+                            }
+                        }
+
+                        .item_value {}
+                    }
+                }
+            }
+        }
+    }
+}
+
+.card_popup__slider {
+    display: flex;
+    align-items: center;
+
+    .popup_card__slide {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            @media (max-height: 800px) {
+                max-height: 95vh;
+            }
+
+            display: flex;
+            max-width: 100%;
+            max-height: 700px;
+        }
+    }
+}
+
+.tns-nav {
+    display: none;
+}

@@ -1,0 +1,105 @@
+@import '../../vars.scss';
+
+.Pagination {
+  margin-top: 40px;
+  font-size: 0;
+  display: flex;
+  justify-content: center;
+
+  .pagination_btn-prev {
+    border-left: 1px solid #ccc;
+    border-right: none;
+    border-radius: 50% 0% 0% 50%;
+  }
+
+  .pagination_btn-next {
+    border-left: none;
+    border-radius: 0% 50% 50% 0%;
+  }
+
+  .Pagination__inner {
+    display: flex;
+
+    .Pagination__item {
+      @include phone {
+        &:nth-child(2) {
+          // border-left: 1px solid #ccc;
+        }
+      }
+
+      font-size: 14px;
+      width: 35px;
+      height: 37px;
+      background: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ccc;
+      border-left: none;
+      position: relative;
+
+      &.Pagination__-- {
+        @include phone {
+          display: none;
+        }
+
+        &::after {
+          content: '...';
+        }
+
+        &:hover {
+          background: none;
+        }
+      }
+
+      &.Pagination__arrow {
+        @include phone {
+          display: none;
+          width: 1px;
+          border-radius: 0;
+          background: none;
+          border: none;
+          border-right: 1px solid #ccc;
+
+          &:first-child {
+            display: block;
+            border-left: none;
+          }
+        }
+
+        stroke: $gray;
+        background: url('/icons/arrow_next.svg') center center no-repeat;
+        background-size: 13px;
+        border-radius: 0 50% 50% 0;
+
+        &:hover {
+          background: url('/icons/arrow_next.svg') center center no-repeat $grayL2;
+          background-size: 13px;
+        }
+
+        &:first-child {
+          border-radius: 50% 0 0 50%;
+          background: url('/icons/arrow_prev.svg') center center no-repeat;
+          background-size: 13px;
+
+          &:hover {
+            background: url('/icons/arrow_prev.svg') center center no-repeat $grayL2;
+            background-size: 13px;
+          }
+        }
+      }
+
+      &:hover {
+        background: $grayL2;
+      }
+
+      &.Pagination__item--active {
+        background: $yellow;
+      }
+
+      &:nth-child(1) {
+        border-left: 1px solid #ccc;
+      }
+    }
+  }
+}

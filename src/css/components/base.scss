@@ -1,0 +1,348 @@
+@import '../vars.scss';
+
+.title,
+h1 {
+  @include notebook {
+    margin: 10px 0 30px;
+  }
+
+  position: relative;
+  z-index: 50;
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 20px;
+  line-height: 120%;
+  font-weight: 400;
+  margin: 0px 0 25px;
+}
+
+.block_title {
+  margin: 20px 0;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.help-bar{
+  width: 100%;
+}
+
+.form_errors {
+  color: $yellow;
+  flex: 0 0 100%;
+  margin: 25px auto;
+  //display: none;
+  justify-content: center;
+  align-items: center;
+
+  &.is-active {
+    display: flex;
+  }
+
+  img {
+    display: flex;
+    margin-right: 10px;
+  }
+}
+
+.container,
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+
+  @include pc {
+    max-width: 1000px;
+  }
+
+  @include notebook {
+    max-width: 800px;
+  }
+
+  @include tablet {
+    max-width: 750px;
+  }
+
+  @include tablet_sm {
+    // padding: 3px 10px;
+    padding: 0 20px;
+  }
+
+  @include phone_big {}
+}
+
+.main-content {
+  margin-bottom: 55px;
+}
+
+.main {
+  @include notebook {}
+
+  &.none_padding {
+    @include notebook {
+      padding: 0 0px;
+    }
+  }
+}
+
+.wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.inp {
+  padding: 10px 15px;
+  border-radius: 40px;
+}
+
+// ==============go-top============ \\
+
+.go-top {
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  z-index: 99;
+  pointer-events: none;
+  width: 100%;
+  position: fixed;
+
+  .go-top_btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $black80;
+    margin-left: auto;
+    pointer-events: all;
+
+    &.none {
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    &:hover {
+      transform: scale(0.9, 0.9);
+    }
+  }
+}
+
+// ==============yellow_btn.hover_black============ \\
+
+.yellow_btn {
+  transition: background .3s !important;
+  padding: 15px 25px;
+  border-radius: 40px;
+  background: $yellow;
+  color: $textGray;
+  font-size: 16px;
+  display: flex;
+  font-weight: 400;
+  letter-spacing: inherit;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #FFED0000;
+
+  &.hover_black:hover {
+    // box-shadow: 0px 0px 0px 1px $black;
+    border: 1px solid $black;
+    color: $black;
+  }
+
+  &:hover {
+    // box-shadow: 0px 0px 0px 1px $yellow;
+    border: 1px solid $yellow;
+    color: $yellow;
+    background: none;
+  }
+}
+
+.btn_close {
+  stroke: $yellow;
+  cursor: pointer;
+}
+
+// ============submit_btn============ \\
+
+
+@keyframes round_spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+.submit_btn,
+.load_btn {
+  position: relative;
+  height: 50px;
+  min-width: 177px;
+
+  .load {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+
+    img {
+      display: flex;
+      animation: round_spin 1s linear infinite;
+    }
+  }
+
+  &.Button--loading {
+    background: none;
+    // box-shadow: 0px 0px 0px 1px $black;
+    border: 1px solid $black;
+
+    .load {
+      display: block;
+    }
+
+    .text {
+      display: none;
+    }
+  }
+}
+
+// ============load_screen============ \\
+
+.load_screen {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.load {
+    pointer-events: all;
+    opacity: 1;
+  }
+
+  &::after {
+    content: '';
+    background: url('@icons/load_round.svg') center center no-repeat;
+    background-size: 100% 100%;
+    width: 70px;
+    height: 70px;
+    display: block;
+    // position: absolute;
+    // left: 50%;
+    // top: 50%;
+    // transform: translate(-50%, -50%);
+    animation: round_spin 1s linear infinite;
+  }
+}
+
+// ============underline.reverse========== \\
+
+.underline {
+  position: relative;
+
+  &.reverse {
+    &::before {
+      width: 100%;
+    }
+
+    &:hover::before {
+      width: 0;
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 1px;
+    display: block;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100%;
+    background: $textGray;
+    transition: .3s;
+  }
+
+  &:hover::before {
+    width: 100%;
+  }
+}
+
+// ===========btn_close========== \\
+
+.btn_close {
+  background: $black;
+  color: $yellow;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  opacity: 1;
+  z-index: 50;
+
+  &:hover {
+    transform: scale(0.9, 0.9);
+    // background: $black40;
+  }
+}
+
+.catalog_btn {
+  .icon {
+    margin-right: 7px;
+    width: 26px;
+    height: 26px;
+    display: inline-block;
+    position: relative;
+
+    img {
+      // width: 15px;
+      display: flex;
+      position: absolute;
+
+      &:first-child {
+        top: 0px;
+        left: 0px;
+      }
+
+      &:last-child {
+        z-index: 5;
+        background: $yellow;
+        right: 3px;
+        bottom: 0px;
+      }
+    }
+  }
+
+  &:hover .icon img {
+    &:first-child {
+      top: 5px;
+      left: 0px;
+    }
+
+    &:last-child {
+      z-index: 5;
+      background: $yellow;
+      right: 3px;
+      bottom: 5px;
+    }
+  }
+}

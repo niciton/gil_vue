@@ -1,0 +1,59 @@
+.scroll-text {
+    @include notebook {
+        max-height: 100%;
+    }
+
+    max-height: 530px;
+    overflow: auto;
+    position: relative;
+    padding-right: 25px;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+        background: #fff;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $grayL;
+        border: 2px solid #fff;
+        border-radius: 20px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $yellow;
+        width: 6px;
+        border-radius: 6px;
+        // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    /* horizontal scrollbar track */
+    // .gm-scrollbar {
+    //     background: $yellow;
+    //     width: 4px;
+    //     border-radius: 20px;
+    //     height: 100%;
+    //     right: 0;
+    //     top: 0;
+    //     position: absolute;
+
+    //     &.-horizontal {
+    //         background-color: transparent;
+    //     }
+
+    //     .thumb {
+    //         left: 50%;
+    //         background: $yellow;
+    //         width: 20px;
+    //         height: 20px;
+    //         border-radius: 20px;
+    //     }
+    // }
+
+    // .gm-scrollbar.-vertical {
+    //     display: none;
+    // }
+
+    // .gm-scrollbar .thumb:hover {
+    //     background-color: fuchsia;
+    // }
+}

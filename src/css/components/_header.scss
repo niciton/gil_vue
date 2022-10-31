@@ -1,0 +1,492 @@
+@import './menu';
+@import './inp_search';
+// @import '../vars';
+
+#app {
+    @include notebook {
+        padding-top: 159px;
+    }
+
+    @include tablet_mid {
+        padding-top: 167px;
+    }
+
+    @include phone_big {
+        padding-top: 130px;
+    }
+
+    padding-top: 147px;
+}
+
+.header,
+.header .container,
+.header .header_container {
+    transition: .5s;
+}
+
+.header {
+    background: $yellow;
+    z-index: 899;
+    position: fixed;
+    width: 100%;
+    min-width: 360px;
+    top: 0;
+    left: 0;
+
+    &.hidden .container .header_container {
+        @include phone_big {
+            padding: 10px 0px 10px;
+        }
+
+        padding: 7px 0 10px;
+
+        .header_logo {
+            @include notebook {
+                width: 150px;
+            }
+
+            @include tablet_mid {
+                transform: translateY(00%);
+            }
+
+            @include phone_big {
+                width: 125px;
+                // transform: translateY(00%);
+            }
+
+            transform: translate(0, 0);
+            // width: 140px;
+
+            .logo_inner {
+                img {
+                    @include phone_big {
+                        max-width: 125px;
+                    }
+
+                    max-width: 150px;
+                }
+            }
+
+            .logo_text {
+                @include notebook {
+                    left: 0%;
+                    top: 100%;
+                }
+
+                @include tablet_mid {
+                    display: none;
+                }
+
+                transition: position 0s;
+                position: absolute;
+                left: 100%;
+                transform: scale(0, 0);
+            }
+        }
+
+        .header_main {
+            .header_items {
+                @include tablet_mid {
+                    transform: none;
+                    margin-top: -50px;
+                    position: static;
+                }
+
+                position: absolute;
+                bottom: 100%;
+                transform: translateY(-200%);
+
+                .header_phone {
+                    @include phone {
+                        display: block;
+                        transform: none;
+                    }
+                }
+            }
+
+            .search_wrap {
+                @include notebook {
+                    width: 473px;
+                }
+
+                @include tablet {
+                    width: 434px;
+                }
+
+                @include tablet_mid {
+                    width: 100%;
+                    position: static;
+                    transform: translateY(0);
+                }
+
+                position: absolute;
+                top: 50%;
+                right: 0;
+                transform: translateY(-50%);
+                width: 533px;
+            }
+        }
+    }
+
+    .container {
+        position: relative;
+
+        .header_container {
+            @include tablet_mid {
+                padding-top: 45px;
+            }
+
+            @include phone_big {
+                padding: 0px 0px 12px;
+                padding-top: 35px;
+            }
+
+            padding: 25px 0px;
+            font-weight: 400;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            position: relative;
+
+            .header_logo {
+                @include notebook {
+                    width: 230px;
+                    justify-content: center;
+                    margin-right: 10px;
+                    transform: translateY(0px);
+
+                    .logo_inner {
+                        width: 150px;
+                    }
+                }
+
+                @include tablet_mid {
+                    width: 150px;
+                    bottom: calc((0%) + (85px));
+                    margin-right: 0;
+                    position: absolute;
+
+                    .logo_text {
+                        display: none;
+                    }
+                }
+
+                @include phone_big {
+                    width: 125px;
+                    bottom: calc((0%) + (65px));
+
+                    .logo_inner {
+                        width: 125px;
+                    }
+                }
+
+                position: relative;
+                transform: translateY(-15px);
+                display: flex;
+                align-items: flex-end;
+                flex-wrap: wrap;
+                font-weight: 500;
+
+                .logo_inner {
+                    img {
+                        @include phone_big {
+                            max-width: 125px;
+                        }
+
+                        max-width: 100%;
+                        display: flex;
+                    }
+                }
+
+                .logo_text {
+                    @include notebook {
+                        margin-top: 6px;
+                        margin-left: 0;
+                        text-align: center;
+                        max-width: 230px;
+                        white-space: nowrap;
+                    }
+
+                    // transition: position .0s ease .3s,
+                    // transform .3s;
+                    text-transform: uppercase;
+                    margin-left: 15px;
+                    max-width: 190px;
+                    font-size: 12px;
+                    line-height: 130%;
+
+                    br {
+                        &:first-child {
+                            display: none;
+
+                            @include notebook {
+                                display: block;
+                            }
+                        }
+
+                        &:last-child {
+                            display: block;
+
+                            @include notebook {
+                                display: none;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            .header_main {
+                @include tablet_mid {
+                    width: 100%;
+
+                    .header_items {
+                        justify-content: flex-end;
+                    }
+                }
+
+                // position: relative;
+
+                .header_items {
+                    @include tablet_mid {
+                        padding-left: 0;
+                    }
+
+                    @include phone_mid {
+                        .header_logo {
+                            width: 120px;
+                        }
+                    }
+
+                    padding-left: 30px;
+                    margin-bottom: 25px;
+                    display: flex;
+                    align-items: center;
+
+                    .header_item {
+                        @include notebook {
+                            margin-right: 40px;
+                        }
+
+                        @include tablet {
+                            margin-right: 27px;
+                        }
+
+                        @include tablet_sm {
+                            &:nth-last-child(2) {
+                                margin-right: 0;
+                            }
+                        }
+
+                        @include phone {
+                            &:nth-last-child(3) {
+                                margin-right: 0;
+                            }
+                        }
+
+                        @include phone_mid {
+                            margin-right: 13px;
+                        }
+
+                        margin-right: 60px;
+
+                        &:last-child {
+                            margin-right: 0;
+                        }
+
+                        .header_link {
+                            background: none;
+                            display: flex;
+                            align-items: center;
+                            cursor: pointer;
+
+                            .icon {
+                                @include phone_mid {
+                                    margin-right: 5px;
+                                }
+
+                                margin-right: 7px;
+                                width: 26px;
+                                height: 26px;
+                                display: inline-block;
+                                position: relative;
+                            }
+
+                            &.header_menu {
+                                .icon {
+                                    img {
+                                        position: absolute;
+                                        display: flex;
+                                    }
+
+                                    .menu_img {
+                                        height: 25px;
+                                        width: 24px;
+                                    }
+
+                                    .menu_line {
+                                        left: 12px;
+                                        transform: translateX(-50%);
+                                        height: 2px;
+                                        width: 14px;
+
+                                        &.ln-1 {
+                                            top: 7px;
+                                        }
+
+                                        &.ln-2 {
+                                            transition: all .3s ease .1s;
+                                            // transform: translate(-50%, -50%);
+                                            top: 12px;
+                                        }
+
+                                        &.ln-3 {
+                                            top: 17px;
+                                        }
+                                    }
+                                }
+
+                                &:hover .icon .menu_line {
+                                    width: 6px;
+                                }
+                            }
+
+                            &.header_phone {
+                                @include phone {
+                                    transform: none;
+                                    position: fixed;
+                                    right: 20px;
+                                    bottom: 85px;
+                                    width: 50px;
+                                    height: 50px;
+                                    background: $black80;
+                                    border-radius: 50%;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                }
+
+                                .icon {
+                                    @include phone {
+                                        margin-top: 2px;
+                                        z-index: 6;
+                                        margin-right: 0;
+                                    }
+
+                                    svg {
+                                        @include phone {
+                                            stroke: $yellow;
+                                        }
+
+                                        display: flex;
+                                        position: absolute;
+                                        stroke: $textGray;
+                                    }
+
+                                    .phone {
+                                        transform: rotate(5deg);
+                                        left: 0;
+                                    }
+
+                                    .phone_arrow {
+                                        @include phone {
+                                            transform: rotate(-40deg) translate(-4px, -1px);
+                                        }
+
+                                        transform: rotate(1deg) translate(0px, 0px);
+                                        left: 16px;
+                                        bottom: 16px;
+                                    }
+                                }
+
+                                &:hover .icon {
+                                    .phone {
+                                        transform: rotate(-4deg);
+                                    }
+
+                                    .phone_arrow {
+                                        transform: rotate(-40deg) translate(-4px, -1px);
+                                    }
+                                }
+                            }
+
+                            &.header_email {
+                                @include tablet_sm {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .search_wrap {
+                @include notebook {
+                    width: 473px;
+                }
+
+                @include tablet {
+                    width: 434px;
+                }
+
+                @include tablet_mid {
+                    width: 100%;
+                }
+
+                width: 533px;
+            }
+        }
+
+        .search_prompt {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            color: #fff;
+
+            .search_list {
+                line-height: 17px;
+                padding: 20px;
+                width: 100%;
+                background: $black80;
+
+                .search_item {
+                    padding: 8px 0;
+
+                    &:last-child {
+                        padding-bottom: 0;
+                    }
+
+                    .search_link {
+                        span {
+                            color: $yellow;
+                        }
+
+                        &:hover {
+                            color: $yellow;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+
+                .search_activated {
+                    margin-top: 20px;
+                    display: flex;
+                    justify-content: center;
+
+                    .search_btn-activated {
+                        font-size: 16px;
+                    }
+                }
+            }
+
+            .search_fail {
+                line-height: 17px;
+                padding: 20px;
+                background: $black80;
+            }
+        }
+    }
+}
