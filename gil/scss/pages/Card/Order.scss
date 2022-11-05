@@ -1,0 +1,82 @@
+@import '../../vars.scss';
+
+.menu_body.order {
+  .menu_title {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 35px;
+
+    span {
+      margin-left: 15px;
+    }
+  }
+
+  .form_wrap {
+    .form_body {
+      .counter {
+        color: $gray;
+        display: flex;
+        align-items: center;
+        height: 35px;
+
+        .counter_title {
+          padding-left: 10px;
+          color: #fff;
+        }
+
+        .counter_main {
+          background: #fff;
+          border-radius: 20px;
+          position: relative;
+          width: 100px;
+          height: 100%;
+          margin-left: auto;
+
+          .counter_btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            stroke: $gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &.counter_minus {
+              left: 10px;
+            }
+
+            &.counter_plus {
+              right: 10px;
+            }
+          }
+        }
+
+        .counter_inp {
+          color: $textGray;
+          text-align: center;
+          width: 100%;
+          padding: 0 15px;
+          height: 100%;
+          margin: 0;
+        }
+      }
+
+      .form_inp {
+        margin: 25px 0;
+
+        &.is-invalid {
+          border: 1px solid #CF1B27;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,126 @@
+@keyframes round_spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.search_wrap {
+  position: relative;
+  // overflow: hidden;
+
+  &.load {
+    &::after{
+      content: '';
+      position: absolute;
+      height: 100%;
+      z-index: 60;
+      width: 100px;
+      right: 0;
+      top: 0;
+    }
+
+    .search_btn {
+      background: url('/icons/load_round.svg') center center no-repeat;
+      background-size: 100% 100%;
+      animation: 1s round_spin .0s infinite linear;
+
+      svg {
+        transition: .0s;
+        opacity: 0;
+      }
+    }
+  }
+
+  &:focus {
+    &::after {
+      content: '';
+      position: absolute;
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      background: $grayL;
+    }
+  }
+
+  .inp_search {
+    @include phone_big {
+      padding: 10px 15px;
+      padding-right: 90px;
+      font-size: 15px;
+    }
+
+    text-overflow: ellipsis;
+    padding: 15px 20px;
+    padding-right: 90px;
+    border-radius: 50px;
+    width: 100%;
+    border: none;
+    color: $gray;
+    background: #ffffff;
+    display: block;
+
+  }
+
+  .search_clear {
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    display: none;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &.active {
+      display: block;
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      width: 1px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 17px;
+      right: -16px;
+      background: $grayL;
+    }
+
+    span {
+      width: 14px;
+      height: 14px;
+      display: block;
+      position: relative;
+      @include img_bg('x_search.svg');
+    }
+  }
+
+  .search_btn {
+    @include phone_big {
+      width: 23px;
+      height: 23px;
+      top: 8px;
+    }
+
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    position: absolute;
+    background: none;
+    top: 12px;
+    right: 20px;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}

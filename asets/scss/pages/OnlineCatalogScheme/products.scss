@@ -1,0 +1,313 @@
+@import '../../vars.scss';
+@import '../../components/popup.scss';
+@import '../../components/card.scss';
+@import '../../components/table.scss';
+
+.dots {
+  // width: 100%;
+  flex-grow: 3;
+  height: 13px;
+  margin: 0 3px;
+  border-bottom: 1px dotted $textGray;
+}
+
+div.is-active .scheme-budge span {
+  background: $yellow;
+  color: $textGray;
+}
+
+.scheme-budge {
+  padding: 15px 10px;
+  flex: 0 0 160px;
+  width: 160px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid $black10;
+
+  span {
+    cursor: pointer;
+    font-size: 13px;
+    padding: 0 7px;
+    white-space: nowrap;
+    color: #fff;
+    min-width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $black40;
+
+    &:hover {
+      background: $yellow;
+      color: $textGray;
+    }
+  }
+}
+
+.card {
+  @include pc {
+    // padding-top: 50px;
+  }
+
+  @include phone_big {
+    padding: 15px !important;
+    padding-top: 50px !important;
+  }
+
+  @include phone {
+    &:first-child {
+      border-top: 1px solid $black10;
+    }
+  }
+
+  padding-top: 55px !important;
+  position: relative;
+
+  .scheme-budge {
+    position: absolute;
+    left: 10px;
+    padding: 0;
+    top: 10px;
+    display: flex;
+    align-items: center;
+    flex: 0 0 150px;
+    width: 150px;
+    min-height: 30px;
+    border-radius: 50%;
+    border-right: none;
+  }
+
+  .card_body {
+    @include phone_big {
+      max-width: 100% !important;
+    }
+  }
+}
+
+.Products {
+  margin-top: 60px;
+
+  .product {
+    @include notebook {
+      height: auto;
+    }
+
+    @include phone {
+      flex-wrap: wrap;
+
+      .scheme-budge {
+        padding-bottom: 0;
+        padding-top: 15px;
+        border-right: none;
+      }
+    }
+
+    min-height: 60px;
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid $black10;
+
+    &:first-child {
+      border-top: 1px solid $black10;
+    }
+
+    div:last-child {
+      border-right: none;
+    }
+
+    .product_body {
+      @include tablet_sm {
+        flex-direction: column;
+      }
+
+      width: 100%;
+      display: flex;
+
+      div:last-child {
+        border-right: none;
+      }
+
+      .product_title {
+        @include tablet_sm {
+          padding-top: 10px;
+          padding-bottom: 0;
+          border: none;
+        }
+
+        flex-grow: 3;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 15px 10px;
+        border-right: 1px solid $black10;
+
+        span {
+          width: 100%;
+        }
+      }
+
+      .product_info {
+        @include notebook {
+          flex-direction: column;
+          justify-content: center;
+          // flex-wrap: wrap;
+          flex: 0 0 auto;
+          padding: 15px 10px;
+          width: 270px;
+        }
+
+        @include phone {
+          width: 100%;
+        }
+
+        display: flex;
+
+        div:first-child {
+          @include notebook {
+
+            div,
+            span,
+            svg {
+              margin-top: 0 !important;
+            }
+          }
+
+          // @include phone {
+          //   padding-bottom: 15px;
+          // }
+
+        }
+
+        div:last-child {
+          border-right: none;
+        }
+
+        .product_article {
+          @include notebook {
+            padding: 0;
+            border: none;
+            width: 100%;
+            flex: 0 0 auto;
+          }
+
+          flex: 0 0 290px;
+          width: 290px;
+          display: flex;
+          align-items: center;
+          padding: 15px 10px;
+          font-size: 13px;
+          border-right: 1px solid $black10;
+
+          .article_text {
+            font-weight: 300;
+          }
+
+          .dots {
+            @include notebook {
+              flex: 1 1 auto;
+            }
+
+            flex: 0 0 25px;
+          }
+
+          .article_value {
+            // white-space: nowrap;
+            margin-left: 10px;
+            font-weight: 700;
+          }
+        }
+
+        .product_quantity {
+          @include notebook {
+            width: 100%;
+            flex: 0 0 auto;
+            padding: 0;
+
+            div,
+            span,
+            svg {
+              margin-top: 10px;
+            }
+          }
+
+          flex: 0 0 230px;
+          width: 230px;
+          padding: 15px 10px;
+          display: flex;
+          align-items: center;
+
+          .quantity_text {
+            font-weight: 300;
+          }
+
+          .quantity_drop-list {
+            position: relative;
+            margin-left: 10px;
+
+            &.active {
+              svg {
+                z-index: 10;
+                transform: rotate(-90deg);
+              }
+
+              .drop-list_body {
+                display: block;
+              }
+            }
+
+            .drop-list_text {
+              display: flex;
+              cursor: pointer;
+            }
+
+            span {
+              margin-right: 5px;
+            }
+
+            svg {
+              position: relative;
+              z-index: 5;
+              transform: rotate(90deg);
+              width: 8px;
+              height: 14px;
+
+              use {
+                stroke: $gray;
+                fill: none;
+              }
+            }
+          }
+
+          .drop-list_body {
+            @include notebook {
+              transform: translate(9px, -6px);
+            }
+
+            display: none;
+            position: absolute;
+            z-index: 7;
+            right: 0;
+            top: 0;
+            padding: 15px;
+            padding-right: 20px;
+            transform: translate(9px, -16px);
+            border-radius: 10px;
+            background: #fff;
+            border: 1px solid $grayL;
+
+            .drop-list_item {
+              white-space: nowrap;
+              margin-top: 5px;
+
+              &:first-child {
+                margin-top: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,278 @@
+<%= require('html-loader!../__top.html') %> <%=
+require('html-loader!../__menu.html') %> <%=
+require('html-loader!../__breadcrumbs.html') %>
+
+<main class="main">
+  <div class="main-content container">
+    <h1>Онлайн каталоги</h1>
+
+    <form class="search_wrap online-ctalog">
+      <input
+        id="coatalog-search"
+        class="inp_search"
+        type="text"
+        placeholder="Артикул или наименование товара"
+      />
+      <button class="search_clear" type="reset">
+        <span></span>
+      </button>
+      <button class="search_btn">
+        <svg
+          width="19"
+          height="21"
+          viewBox="0 0 19 21"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="8.5"
+            cy="8.5"
+            r="7.75"
+            stroke="#313131"
+            stroke-width="1.5"
+          />
+          <path
+            d="M17.5 20L13.4402 14.7976"
+            stroke="#313131"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+    </form>
+    <div class="search_list online-catalog">
+      <div class="search_titles">
+        <div class="search_title article">Артикул</div>
+        <div class="search_title name">Название</div>
+        <div class="search_title scheme">Схема</div>
+      </div>
+
+      <div class="search_item">
+        <div class="search_artikul article">Болт</div>
+        <div class="search_title name">Болт</div>
+        <ul class="breadcrumbs scheme search_breadcrumbs">
+          <li class="breadcrumbs_item">
+            <span class="breadcrumbs_item__text">Камский автозавод</span>
+          </li>
+
+          <li class="breadcrumbs_item">
+            <span class="breadcrumbs_item__text">5320</span>
+          </li>
+
+          <li class="breadcrumbs_item">
+            <span class="breadcrumbs_item__text">Кузов</span>
+          </li>
+
+          <li class="breadcrumbs_item">
+            <a
+              class="breadcrumbs_link"
+              href="/acat/trucks/kamskij-avtozavod/5320-54/114-54-1/89/99/"
+              itemprop="name"
+            >
+              Насос опрокидывающего механизма 5511-8604000-10
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="search_item">
+        <div class="search_artikul article">Болт</div>
+        <div class="search_title name">Болт</div>
+        <ul class="breadcrumbs scheme search_breadcrumbs">
+          <li class="breadcrumbs_item">
+            <div class="breadcrumbs_item__text">Камский автозавод</div>
+          </li>
+
+          <li class="breadcrumbs_item">
+            <div class="breadcrumbs_item__text">53212</div>
+          </li>
+
+          <li class="breadcrumbs_item">
+            <div class="breadcrumbs_item__text">Кузов</div>
+          </li>
+
+          <li class="breadcrumbs_item">
+            <a
+              class="breadcrumbs_link"
+              href="/acat/trucks/kamskij-avtozavod/53212-55/115-55-1/89/99/"
+              itemprop="name"
+            >
+              Насос опрокидывающего механизма 5511-8604000-10
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="search_item">
+        <div class="search_artikul article">1/14223/31</div>
+        <div class="search_title name">Болт</div>
+        <ul class="breadcrumbs scheme search_breadcrumbs">
+          <li class="breadcrumbs_item">
+            <div class="breadcrumbs_item__text">Камский автозавод</div>
+          </li>
+
+          <li class="breadcrumbs_item">
+            <div class="breadcrumbs_item__text">55102</div>
+          </li>
+
+          <li class="breadcrumbs_item">
+            <div class="breadcrumbs_item__text">Кузов</div>
+          </li>
+
+          <li class="breadcrumbs_item">
+            <a
+              class="breadcrumbs_link"
+              href="/acat/trucks/kamskij-avtozavod/55102-60/119-60-1/89/94/"
+              itemprop="name"
+            >
+              Надрамник опрокидывающего механизма 5511-8601010
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <button
+        class="yellow_btn submit_btn hover_black show_btn"
+        data-next-page="1"
+      >
+        <span class="text">Показать ещё</span>
+        <span class="load">
+          <img src="/icons/load_round.svg" alt="" />
+        </span>
+      </button>
+    </div>
+    <div class="cards_wrap">
+      <div class="card">
+        <a href="OnlineCatalogModel.html" class="card_img">
+          <img src="img/camaz01.png" alt="" />
+        </a>
+        <div class="card_body">
+          <a href="OnlineCatalogModel.html" class="card_title">
+            КАМАЗ-43253 (ЧАСТЬ-2)
+          </a>
+          <div class="card_item in-stock">
+            <div class="item_title">Товаров в наличии</div>
+            <span class="dots"></span>
+            <div class="item_value">3 022 шт.</div>
+          </div>
+          <div class="card_item catalog">
+            <div class="item_title">Каталог</div>
+            <span class="dots"></span>
+            <div class="item_value">2004 г.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <a href="OnlineCatalogModel.html" class="card_img">
+          <img src="img/camaz02.png" alt="" />
+        </a>
+        <div class="card_body">
+          <a href="OnlineCatalogModel.html" class="card_title">
+            КАМАЗ-ОБЩИЙ (5320, 53212, 5410, 54112, 5511, 55102)
+          </a>
+          <div class="card_item in-stock">
+            <div class="item_title">Товаров в наличии</div>
+            <span class="dots"></span>
+            <div class="item_value">2 365 шт.</div>
+          </div>
+          <div class="card_item catalog">
+            <div class="item_title">Каталог</div>
+            <span class="dots"></span>
+            <div class="item_value">2013 г.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <a href="OnlineCatalogModel.html" class="card_img">
+          <img src="img/camaz03.png" alt="" />
+        </a>
+        <div class="card_body">
+          <a href="OnlineCatalogModel.html" class="card_title">
+            КАМАЗ-ОБЩИЙ (5320, 53212, 5410, 54112, 5511, 55102)
+          </a>
+          <div class="card_item catalog">
+            <div class="item_title">Каталог</div>
+            <span class="dots"></span>
+            <div class="item_value">2009 г.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <a href="OnlineCatalogModel.html" class="card_img">
+          <img src="img/camaz04.png" alt="" />
+        </a>
+        <div class="card_body">
+          <a href="OnlineCatalogModel.html" class="card_title">
+            КАМАЗ-ОБЩИЙ (5320, 53212, 5410, 54112, 5511, 55102)
+          </a>
+        </div>
+      </div>
+      <div class="card">
+        <a href="OnlineCatalogModel.html" class="card_img">
+          <img src="img/camaz01.png" alt="" />
+        </a>
+        <div class="card_body">
+          <a href="OnlineCatalogModel.html" class="card_title">
+            КАМАЗ-43253 (ЧАСТЬ-2)
+          </a>
+          <div class="card_item in-stock">
+            <div class="item_title">Товаров в наличии</div>
+            <span class="dots"></span>
+            <div class="item_value">3 022 шт.</div>
+          </div>
+          <div class="card_item catalog">
+            <div class="item_title">Каталог</div>
+            <span class="dots"></span>
+            <div class="item_value">2004 г.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <a href="OnlineCatalogModel.html" class="card_img">
+          <img src="img/camaz02.png" alt="" />
+        </a>
+        <div class="card_body">
+          <a href="OnlineCatalogModel.html" class="card_title">
+            КАМАЗ-ОБЩИЙ (5320, 53212, 5410, 54112, 5511, 55102)
+          </a>
+          <div class="card_item in-stock">
+            <div class="item_title">Товаров в наличии</div>
+            <span class="dots"></span>
+            <div class="item_value">2 365 шт.</div>
+          </div>
+          <div class="card_item catalog">
+            <div class="item_title">Каталог</div>
+            <span class="dots"></span>
+            <div class="item_value">2013 г.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <a href="OnlineCatalogModel.html" class="card_img">
+          <img src="img/camaz03.png" alt="" />
+        </a>
+        <div class="card_body">
+          <a href="OnlineCatalogModel.html" class="card_title">
+            КАМАЗ-ОБЩИЙ (5320, 53212, 5410, 54112, 5511, 55102)
+          </a>
+          <div class="card_item catalog">
+            <div class="item_title">Каталог</div>
+            <span class="dots"></span>
+            <div class="item_value">2009 г.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <a href="OnlineCatalogModel.html" class="card_img">
+          <img src="img/camaz04.png" alt="" />
+        </a>
+        <div class="card_body">
+          <a href="OnlineCatalogModel.html" class="card_title">
+            КАМАЗ-ОБЩИЙ (5320, 53212, 5410, 54112, 5511, 55102)
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<%= require('html-loader!../__bottom.html') %>

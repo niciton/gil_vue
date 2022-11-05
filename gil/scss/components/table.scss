@@ -1,0 +1,118 @@
+div.table_title {
+    display: flex;
+    align-items: center;
+
+    svg {
+        stroke: $yellow;
+    }
+
+    span {
+        margin-left: 15px;
+        font-size: 16px;
+        text-transform: uppercase;
+        color: $yellow;
+    }
+}
+
+.table_body {
+    margin-top: 30px;
+    width: 100%;
+    // display: table;
+    background: #fff;
+    border-spacing: 0px;
+
+    tbody {
+        border-spacing: 0px;
+
+        tr {
+            font-size: 13px;
+            // display: inline-block;
+            background: #fff;
+
+            &.none {
+                display: none;
+            }
+
+            th {
+                @include tablet_sm {
+                    padding: 10px 15px;
+
+                    &:nth-child(2n) {
+                        padding-right: 0;
+                    }
+                }
+
+                text-align: left;
+                font-size: 14px;
+                border-left: 1px solid $black10;
+                border-bottom: 1px solid $black10;
+                padding: 10px 20px;
+                font-weight: 400;
+
+                &.table_title {
+                    // display: table;
+                    font-weight: 700;
+                    font-size: 16px;
+                    background: $yellow;
+                }
+
+                &:nth-child(2n+1) {
+                    @include tablet_sm {
+                        width: auto;
+                    }
+
+                    border-left: none;
+                    width: 190px;
+                }
+
+                &:nth-child(2n) {
+                    // border-left: none;
+                    // width: 100%;
+                }
+
+                .table_breadcrumbs {
+                    @include phone_big {
+                        padding: 0;
+                    }
+
+                    margin: 0;
+
+                    .breadcrumbs_item {
+                        @include notebook {
+                            margin-top: 5px;
+
+                            &:first-child {
+                                margin-top: 0;
+                            }
+                        }
+
+                        margin-top: 0;
+                        color: $textGray;
+
+                        span {
+                            font-size: 14px;
+                        }
+
+                        .breadcrumbs_link {
+                            @include tablet_sm {
+                                padding-right: 10px;
+
+                                &::before {
+                                    width: 0;
+                                }
+                            }
+
+                            &:hover span {
+                                text-decoration: none;
+                            }
+
+                            span {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

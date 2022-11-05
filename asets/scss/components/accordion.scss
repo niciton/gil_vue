@@ -1,0 +1,40 @@
+.accordion_wrap {
+    &.active {
+        .accordion_btn {
+            .arrow {
+                transform: rotate(90deg);
+
+                &::before {
+                    width: 50% !important;
+                }
+
+                svg {
+                    width: 12px;
+                }
+            }
+        }
+
+        .accordion_drop-items {
+            max-height: 1000px;
+            overflow: visible;
+        }
+    }
+
+    .accordion_btn {
+        margin-top: 35px;
+        background: none;
+    }
+
+    .accordion_drop-items {
+        transition: .5s;
+        max-height: 0px;
+        overflow: hidden;
+        transition: overflow 0s ease .3s,
+            height .3s ease 0s;
+
+        .drop_item {
+            margin-top: 20px;
+            margin-left: 30px;
+        }
+    }
+}

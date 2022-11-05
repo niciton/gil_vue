@@ -1,0 +1,108 @@
+@import '../../vars.scss';
+@import '../../components/table_search.scss';
+
+.main-content {
+    width: 100%;
+
+    // search========
+    .search_wrap {
+        @media (max-width: 510px) {
+            width: 100%;
+        }
+
+        width: 500px;
+
+        .inp_search {
+            border: 1px solid $grayL;
+        }
+    }
+
+    .cards_wrap {
+        margin-top: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .card {
+            @include phone_big {
+                width: 100%;
+
+                .card_img{
+                    margin: 0 auto 20px;
+                }
+
+                .card_body {
+                    width: 100% !important;
+                    margin-left: 0 !important;
+                }
+            }
+
+            min-height: 120px;
+            padding: 20px;
+            margin-top: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+
+            &:nth-child(1) {
+                margin-top: 0;
+            }
+
+            &:nth-child(2) {
+                margin-top: 0;
+            }
+
+            .card_img {
+                img {
+                    display: flex;
+                }
+            }
+
+            .card_body {
+                @include pc {
+                    width: 280px;
+                }
+
+                width: 370px;
+                margin-left: 30px;
+
+                .card_title {
+                    margin-bottom: 15px;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+
+                .card_item {
+                    margin-top: 7px;
+                    display: flex;
+                    white-space: nowrap;
+                    align-items: flex-end;
+
+                    &:first-child {
+                        margin-top: 0;
+                    }
+
+                    .item_title {
+                        font-weight: 300;
+                        display: flex;
+                    }
+
+                    .dots {
+                        margin: 0 4px;
+                        // width: 100%;
+                        flex-grow: 3;
+                        display: block;
+                        height: 3px;
+                        border-top: 1px dotted #000;
+                    }
+
+                    .item_value {
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
+}

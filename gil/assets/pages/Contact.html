@@ -1,0 +1,194 @@
+<%= require('html-loader!../__top.html') %> <%=
+require('html-loader!../__menu.html') %> <%=
+require('html-loader!../__breadcrumbs.html') %>
+<h1>КОНТАКТЫ</h1>
+<main class="main none_padding">
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+  <!-- 36 - это высота хвостика(svg) снизу окошка(балуна) -->
+  <div class="main-content" id="map">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+    <script src="//api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+    <script>
+      if ($('body').width() < 750) {
+        var tw = 330;
+        var th = 400;
+        var phoneclass = 'is-phone';
+      } else if ($('body').width() < 1100) {
+        var tw = 715;
+        var th = 305;
+        var phoneclass = '';
+      } else {
+        var tw = 815;
+        var th = 339;
+        var phoneclass = '';
+      }
+
+      ymaps.ready(function () {
+        // Создание экземпляра карты и его привязка к созданному контейнеру.
+        var myMap = new ymaps.Map('map', {
+            center: [55.674494, 52.460184],
+            zoom: 16,
+            controls: ['fullscreenControl', 'zoomControl'],
+          }),
+          // Создание макета балуна на основе Twitter Bootstrap.
+          MyBalloonLayout = ymaps.templateLayoutFactory.createClass(
+            '<div class="popover top boloon-inner-wrapper">' +
+              // '<a class="close" href="#">&times;</a>' +
+              '<div class="arrow"></div>' +
+              '<div class="popover-inner">' +
+              '$[[options.contentLayout observeSize minWidth='
+                .concat(tw, ' maxWidth=')
+                .concat(tw, ' minHeight=')
+                .concat(th, ' maxHeight=')
+                .concat(th, ']]') +
+              '</div>' +
+              '</div>',
+            {
+              /**
+               * Строит экземпляр макета на основе шаблона и добавляет его в родительский HTML-элемент.
+               * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/layout.templateBased.Base.xml#build
+               * @function
+               * @name build
+               */
+              build: function () {
+                this.constructor.superclass.build.call(this);
+
+                this._$element = $('.popover', this.getParentElement());
+
+                this.applyElementOffset();
+
+                this._$element
+                  .find('.boloon-close')
+                  .on('click', $.proxy(this.onCloseClick, this));
+              },
+
+              /**
+               * Удаляет содержимое макета из DOM.
+               * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/layout.templateBased.Base.xml#clear
+               * @function
+               * @name clear
+               */
+              clear: function () {
+                this._$element.find('.close').off('click');
+
+                this.constructor.superclass.clear.call(this);
+              },
+
+              /**
+               * Метод будет вызван системой шаблонов АПИ при изменении размеров вложенного макета.
+               * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+               * @function
+               * @name onSublayoutSizeChange
+               */
+              onSublayoutSizeChange: function () {
+                MyBalloonLayout.superclass.onSublayoutSizeChange.apply(
+                  this,
+                  arguments
+                );
+
+                if (!this._isElement(this._$element)) {
+                  return;
+                }
+
+                this.applyElementOffset();
+
+                this.events.fire('shapechange');
+              },
+
+              /**
+               * Сдвигаем балун, чтобы "хвостик" указывал на точку привязки.
+               * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+               * @function
+               * @name applyElementOffset
+               */
+              applyElementOffset: function () {
+                this._$element.css({
+                  left: '50%',
+                  top: '-36px',
+                  position: 'absolute',
+                  transform: 'translate(-50%, -100%)',
+                });
+              },
+
+              /**
+               * Закрывает балун при клике на крестик, кидая событие "userclose" на макете.
+               * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+               * @function
+               * @name onCloseClick
+               */
+              onCloseClick: function (e) {
+                e.preventDefault();
+
+                this.events.fire('userclose');
+              },
+
+              /**
+               * Используется для автопозиционирования (balloonAutoPan).
+               * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/ILayout.xml#getClientBounds
+               * @function
+               * @name getClientBounds
+               * @returns {Number[][]} Координаты левого верхнего и правого нижнего углов шаблона относительно точки привязки.
+               */
+              getShape: function () {
+                if (!this._isElement(this._$element)) {
+                  return MyBalloonLayout.superclass.getShape.call(this);
+                }
+
+                var position = this._$element.position();
+
+                return new ymaps.shape.Rectangle(
+                  new ymaps.geometry.pixel.Rectangle([
+                    [position.left, position.top],
+                    [
+                      position.left + this._$element[0].offsetWidth,
+                      position.top +
+                        this._$element[0].offsetHeight +
+                        this._$element.find('.arrow')[0].offsetHeight,
+                    ],
+                  ])
+                );
+              },
+
+              /**
+               * Проверяем наличие элемента (в ИЕ и Опере его еще может не быть).
+               * @function
+               * @private
+               * @name _isElement
+               * @param {jQuery} [element] Элемент.
+               * @returns {Boolean} Флаг наличия.
+               */
+              _isElement: function (element) {
+                return element && element[0] && element.find('.arrow')[0];
+              },
+            }
+          ),
+          // Создание вложенного макета содержимого балуна.
+          MyBalloonContentLayout = ymaps.templateLayoutFactory.createClass(
+            '<div class="popover-content">$[properties.balloonContent]</div>'
+          ),
+          // Создание метки с пользовательским макетом балуна.
+          myPlacemark = (window.myPlacemark = new ymaps.Placemark(
+            myMap.getCenter(),
+            {
+              balloonContent: '<div class="banner"><button class="btn_close boloon-close"><svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 18L18 1.00001" stroke-width="2" stroke-linecap="round"></path><path d="M18 18L1.00001 1.00001" stroke-width="2" stroke-linecap="round"></path></svg></button><div class="banner_picture"><img src="/netcat_files/pages/avtoalfa_office.jpg" alt/></div><div class="banner_text"><div class="banner_title">ООО ГК «АВТОАЛЬФА»—<br> правообладатель эксклюзивной<br> торговой марки GILBER</div><div class="banner_list"><div class="coordinates"><svg width="20" height="28" viewBox="0 0 20 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.3622 16.1322L12.1402 22.5417H12.1414L10.0006 25.7252L7.85983 22.5417L3.63777 16.1322C3.17265 15.3927 1.91372 13.4685 1.63341 12.7928C0.412934 9.84438 1.05666 6.67034 2.70629 4.54998C6.38756 -0.183326 13.6124 -0.183326 17.2937 4.54998C18.9433 6.67034 19.5871 9.84438 18.3666 12.7928C18.0863 13.4685 16.8274 15.3916 16.3622 16.1322Z" stroke-width="1.5" stroke-miterlimit="22.9256"></path><path d="M9.99937 14.0337C12.162 14.0337 13.9151 12.2806 13.9151 10.118C13.9151 7.95539 12.162 6.20228 9.99937 6.20228C7.8368 6.20228 6.08368 7.95539 6.08368 10.118C6.08368 12.2806 7.8368 14.0337 9.99937 14.0337Z" stroke-width="1.5" stroke-miterlimit="22.9256"></path></svg> 423800, Россия,<br> г. Набережные Челны,<br> ул. Металлургическая, д. 23</div><a href="//mailto:info@gilber.online" target="_blank" class="email"><svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.7104 0.0153162C1.03309 0.100923 0.613405 0.386188 0.364199 0.798633C0.109022 1.2212 0.0259535 1.78325 0.0259535 2.4052C0.0259535 3.51754 0.0335546 4.55193 0.0411556 5.58797C0.0585294 7.95022 0.0759032 10.3262 0.0088512 12.657C-0.02101 13.6903 0.0110229 14.5381 0.321036 15.1177C0.622906 15.6819 1.20357 16 2.2783 16H17.7217C18.7964 16 19.3774 15.6822 19.679 15.1177C19.989 14.5378 20.021 13.69 19.9911 12.657C19.9241 10.3262 19.9415 7.9505 19.9588 5.58797C19.9664 4.55193 19.974 3.51754 19.974 2.4052C19.974 1.78325 19.891 1.2212 19.6358 0.798633C19.3869 0.386188 18.9672 0.100923 18.2899 0.0153162L15.9561 0H4.04391L1.7104 0.0153162ZM1.61104 14.4096L1.61077 14.0844L1.61647 4.15371C1.61484 4.11022 1.62163 4.06619 1.6371 4.02516C1.65203 3.9855 1.67565 3.94776 1.70714 3.91494C1.76903 3.85094 1.85129 3.81812 1.93381 3.81675C2.01607 3.81566 2.09913 3.84629 2.16266 3.90838C2.64804 4.38263 3.12989 4.864 3.6112 5.34455C4.20354 5.93614 4.79614 6.528 5.39391 7.10564C5.85079 7.54708 6.34295 8.02243 6.79739 8.47015C7.25643 8.92226 7.68454 9.35303 8.01437 9.70612C8.88034 10.6297 9.84486 11.4544 11.0811 10.5603C11.4128 10.3204 11.7104 10.0012 11.974 9.71843C12.7031 8.93949 13.4803 8.19091 14.2505 7.44862L14.6061 7.10564C15.2039 6.528 15.7965 5.93641 16.3888 5.34455C16.8701 4.86373 17.3517 4.38263 17.8373 3.90838C17.9009 3.84602 17.9839 3.81566 18.0662 3.81675C18.1487 3.81785 18.231 3.85067 18.2929 3.91494C18.3244 3.94776 18.348 3.9855 18.3629 4.02516C18.3784 4.06591 18.3854 4.10995 18.3835 4.15371L18.3887 14.0844L18.3868 14.4096H1.61104ZM9.67383 9.14626C9.06901 8.5079 8.43025 7.88458 7.79122 7.26099C7.24232 6.72547 6.69314 6.18913 6.16243 5.64103C5.94797 5.43617 5.74682 5.24089 5.55218 5.05026C5.35672 4.8588 5.16507 4.66927 4.97205 4.47836C4.77416 4.28335 4.57951 4.09436 4.3846 3.90482C3.89976 3.43412 3.41167 2.95986 2.95642 2.47576C2.89507 2.41121 2.83236 2.34503 2.77291 2.27747C2.71373 2.20991 2.6589 2.14263 2.61492 2.07617C2.57637 2.02147 2.55547 1.9561 2.55547 1.88882C2.55547 1.79966 2.59157 1.71843 2.64994 1.65962C2.70857 1.60055 2.7892 1.56417 2.8777 1.56417L10.0001 1.56554L17.1226 1.56472C17.2113 1.56417 17.2917 1.60082 17.3501 1.65935C17.4087 1.71843 17.4448 1.79966 17.4448 1.88882C17.4448 1.95474 17.4244 2.01928 17.3873 2.07344C17.3441 2.13908 17.2882 2.208 17.2271 2.27747C17.1676 2.34503 17.1052 2.41121 17.0436 2.47576C16.5881 2.95986 16.1 3.43385 15.6154 3.90482C15.4205 4.09436 15.2258 4.28308 15.0279 4.47836C14.8352 4.66927 14.6436 4.85853 14.4478 5.05026C14.2532 5.24089 14.052 5.43617 13.8376 5.64103C13.3071 6.18913 12.7577 6.72547 12.2088 7.26099C11.5697 7.88486 10.931 8.50817 10.3262 9.14626C10.1918 9.28848 9.80821 9.28848 9.67383 9.14626Z"></path></svg> info@gilber.online</a><a href="https://vk.com/gilberparts" target="_blank" class="vk_link"> <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.75" y="0.75" width="18.5" height="18.5" rx="4.25" stroke-width="1.5"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M8.28116 6.04972C7.48478 6.25014 7.46192 6.28041 7.87371 6.5911C8.21226 6.84642 8.27778 7.04733 8.32913 7.98972C8.39401 9.17793 8.18698 9.97544 7.81399 9.97544C7.46047 9.97544 6.69806 8.9627 6.04704 7.62799L5.46445 6.43382H4.09578C3.27283 6.43382 2.72726 6.49934 2.72726 6.59803C2.72726 6.91001 4.21973 9.73268 4.98182 10.862C6.29673 12.8107 7.61002 13.7461 9.31418 13.948C10.555 14.0948 10.9374 13.94 10.9374 13.2904C10.9374 12.9919 11.0691 12.5853 11.2299 12.3866C11.5721 11.9639 11.9364 12.0841 12.5701 12.8293C13.4368 13.8487 13.7776 14 15.2053 14C17.2432 14 17.297 13.6513 15.541 11.8246C14.9569 11.2171 14.479 10.6343 14.479 10.5294C14.479 10.4244 14.9408 9.71915 15.5052 8.96205C16.4961 7.63314 16.9695 6.72424 16.7733 6.528C16.7215 6.47616 16.0111 6.43382 15.1944 6.43382H13.7098L13.1515 7.60932C12.5692 8.83552 11.6967 9.97544 11.3403 9.97544C11.0175 9.97544 10.9375 9.58361 10.935 7.9902C10.9335 7.17853 10.8739 6.42223 10.8026 6.30971C10.6663 6.09496 8.84653 5.90725 8.28116 6.04972Z"></path></svg> ВКонтакте</a></div></div><svg class="popup-element" width="62" height="36" viewBox="0 0 62 36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0C13.5149 0 31 3.76373 31 36C31 3.76373 48.4861 0 62 0H0Z" fill="black" fill-opacity="0.8"></path></svg></div>',
+            },
+            {
+              balloonShadow: false,
+              iconLayout: 'default#image',
+              balloonLayout: MyBalloonLayout,
+              iconImageSize: [30, 42],
+              iconImageOffset: [-15, -43],
+              iconImageHref: '/icons/map.svg',
+              balloonContentLayout: MyBalloonContentLayout,
+              balloonPanelMaxMapArea: 0,
+            }
+          ));
+        myMap.geoObjects.add(myPlacemark);
+        myPlacemark.balloon.open(undefined, undefined, {
+          openTimeout: 500,
+        });
+      });
+    </script>
+  </div>
+</main>
+<%= require('html-loader!../__bottom.html') %>

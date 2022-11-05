@@ -1,0 +1,29 @@
+@mixin phone_height {
+  @media (max-height: 650px) and (max-width: 640px) {
+    @content;
+  }
+}
+
+@mixin content_height {
+  @media (max-height: 650px) {
+    @content;
+  }
+}
+
+@mixin brake_point-1 {
+  @media (max-width: 1650px) {
+    @content;
+  }
+}
+
+@mixin brake_point-2 {
+  @media (max-width: 1250px) {
+    @content;
+  }
+}
+
+@mixin brake_point-3 {
+  @media (max-width: 1100px) {
+    @content;
+  }
+}

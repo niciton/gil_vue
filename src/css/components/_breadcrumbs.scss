@@ -1,0 +1,52 @@
+@import '../vars';
+
+.breadcrumbs {
+  font-size: 0;
+  width: 100%;
+  position: relative;
+  z-index: 50;
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  .breadcrumbs_item {
+    margin-top: 5px;
+    color: $gray;
+    display: inline;
+    position: relative;
+    flex-wrap: nowrap;
+    box-sizing: content-box;
+
+    span {
+      font-size: 13px;
+    }
+
+    .breadcrumbs_link {
+      display: inline;
+      position: relative;
+
+      &:hover span {
+        text-decoration: underline;
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+      padding: 0;
+
+      &::after {
+        display: none;
+      }
+    }
+
+    &::after {
+      margin: 0 5px 0px;
+      width: 13px;
+      display: inline-block;
+      height: 11px;
+      content: '';
+      background: url("data: image/svg+xml,%3csvg width='14' height='10' viewBox='0 0 17 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M10.0261 1L16 6.97441L10 13' stroke='%23000000' stroke-opacity='0.25' stroke-width='2' stroke-miterlimit='22.9256' stroke-linecap='round' stroke-linejoin='round' /%3e%3cline x1='1' y1='7' x2='9' y2='7' stroke='%23000000' stroke-opacity='0.25' stroke-width='2' stroke-linecap='round'/%3e%3c/svg%3e") center center no-repeat;
+      background-size: 14px 10px;
+    }
+  }
+}

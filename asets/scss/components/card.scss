@@ -1,0 +1,271 @@
+// ====это та что на витрине==== \\
+
+@include font("Inter", "Inter-ExtraBold", 800, "normal");
+
+.card {
+    @include pc {
+        padding: 40px 15px;
+
+        .card_body {
+            margin-left: 25px;
+            max-width: 385px;
+
+            .card_item {
+                max-width: 280px;
+            }
+        }
+    }
+
+    @include phone_big {
+        flex-direction: column;
+        padding: 30px 0px;
+
+        .card_body {
+            margin-left: 0;
+            max-width: 100%;
+
+            .card_item {
+                max-width: 100%;
+            }
+        }
+    }
+
+    padding: 45px 20px;
+    display: flex;
+    border-bottom: 1px solid $black10;
+    align-items: center;
+
+    .card_photo {
+        @include tablet_mid {
+            width: 160px;
+            flex: 0 0 160px;
+        }
+
+        @include phone_big {
+            width: 225px;
+            flex: 1 1 auto;
+        }
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 225px;
+        flex: 0 0 225px;
+
+        img {
+            max-width: 100%;
+            display: flex;
+        }
+    }
+
+    .card_body {
+        @include notebook {
+            max-width: 420px;
+        }
+
+        @include phone_big {
+            margin-left: 0;
+            margin-top: 20px;
+        }
+
+        max-width: 550px;
+        margin-left: 30px;
+
+        .card_title {
+            font-weight: 400;
+            margin-bottom: 20px;
+            display: block;
+            font-size: 15px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.card_item {
+    white-space: nowrap;
+    margin-top: 10px;
+    display: flex;
+    align-items: flex-end;
+    max-width: 290px;
+    font-size: 13px;
+    font-weight: 300;
+
+    .dots {
+        display: block;
+        // width: 100%;
+        flex-grow: 3;
+        border-bottom: 1px dotted $gray;
+        height: 1px;
+        margin: 0 5px;
+        margin-bottom: 3px;
+    }
+
+    .item_value {
+        font-weight: 600;
+    }
+
+    // oem=============
+    .oem-number_value {
+
+        position: relative;
+        display: flex;
+
+        &.pointer {
+            cursor: pointer;
+
+            .oem-number_list {
+                @include phone {
+                    padding-right: 18px;
+                }
+
+                padding-right: 25px;
+            }
+
+            &.active {
+                .oem-number_list {
+                    pointer-events: all;
+                    opacity: 1;
+                }
+
+                .arrow {
+                    transform: rotate(-90deg);
+                }
+            }
+        }
+
+        .text {}
+
+        .arrow {
+            @include phone {
+                margin-left: 5px;
+                width: 6px;
+                height: 12px;
+            }
+
+            margin-left: 7px;
+            position: relative;
+            z-index: 15;
+            transform: rotate(90deg);
+            height: 14px;
+            width: 8px;
+
+            svg,
+            use {
+                fill: none;
+                width: 100%;
+                height: 100%;
+                stroke: $gray;
+            }
+        }
+
+        .oem-number_list {
+            pointer-events: none;
+            opacity: 0;
+            top: 0%;
+            left: 0px;
+            transform: translate(-16px, -16px);
+            position: absolute;
+            background: #FFFFFF;
+            padding: 15px;
+            padding-right: 0px;
+            border: 1px solid $grayL;
+            border-radius: 10px;
+
+            .oem-number_item {
+                font-weight: 600;
+                margin-top: 5px;
+
+                &:first-child {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+
+    // applicability==
+    .applicability_value {
+        cursor: pointer;
+        padding: 3px 10px;
+        background: $yellow;
+        border-radius: 20px;
+
+        &:hover {
+            background: none;
+            box-shadow: 0 0 0 1px #000;
+        }
+    }
+
+    // price==========
+    &.card_price {
+        margin-top: 20px;
+
+        .price_value {
+            display: flex;
+            margin-bottom: 3px;
+
+            .text {
+                font-weight: 800;
+                font-size: 24px;
+            }
+
+            .icon {
+                color: $grayD;
+                font-size: 16px;
+                margin-left: 5px;
+            }
+        }
+    }
+}
+
+.popup {
+    .btn_cloce {
+        z-index: 500;
+    }
+
+    .popup_wrap {
+        @include tablet_mid {
+            padding: 50px 10px;
+        }
+
+        @include phone_big {
+            justify-content: flex-start;
+            padding: 35px 10px;
+        }
+
+        padding: 50px 20px;
+        align-items: flex-start;
+        overflow: auto;
+
+        .popup_body {
+            @include notebook {
+                width: 700px;
+            }
+
+            max-width: 100%;
+            width: 800px;
+
+            .table_title {
+                svg {
+                    stroke: $yellow;
+                }
+
+                span {
+                    color: $yellow;
+                }
+            }
+        }
+    }
+}
+
+.table_bady {
+    @include notebook {
+        // width: auto;
+        // width: 700px;
+    }
+
+    margin-top: 30px;
+    width: 100%;
+}
