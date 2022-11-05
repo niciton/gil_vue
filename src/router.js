@@ -46,6 +46,6 @@ export default createRouter({
       meta: {
         name: 'Доставка'
       }
-    }
+    },
   ],
 });
