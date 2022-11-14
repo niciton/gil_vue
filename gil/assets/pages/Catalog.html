@@ -1,0 +1,383 @@
+<%= require('html-loader!../__top.html') %> <%=
+require('html-loader!../__menu.html') %> <%=
+require('html-loader!../__breadcrumbs.html') %>
+
+<main class="main">
+  <div id="load_screen" class="load_screen"></div>
+  <div class="container">
+    <h1>Каталог запчастей GILBER</h1>
+  </div>
+  <div class="main-content container">
+    <!-- sidebar -->
+    <div class="sidebar">
+      <ul class="AsideBlock">
+        <li>
+          <span class="AsideBlock__title">Генераторы</span>
+          <ul class="AsideBlock">
+            <li>
+              <a
+                href="/catalog/generatory/"
+                class="AsideBlock__item AsideBlock__item--link"
+                >Все товары раздела</a
+              ><a
+                href="/catalog/generatory/generatory-dlya-traktorov/"
+                class="AsideBlock__item AsideBlock__item--link"
+                >Генераторы для тракторов</a
+              >
+            </li>
+            <li>
+              <a
+                href="/catalog/generatory/generatory-kamaz/"
+                class="AsideBlock__item AsideBlock__item--link"
+                >Генераторы КАМАЗ</a
+              >
+            </li>
+            <li>
+              <a
+                href="/catalog/generatory/generatory-maz/"
+                class="AsideBlock__item AsideBlock__item--link"
+                >Генераторы МАЗ</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <span class="AsideBlock__title">Стартеры</span>
+          <ul class="AsideBlock">
+            <li>
+              <a
+                href="/catalog/startery/"
+                class="AsideBlock__item AsideBlock__item--link"
+                >Все товары раздела</a
+              ><a
+                href="/catalog/startery/startery-gaz/"
+                class="AsideBlock__item AsideBlock__item--link"
+                >Стартеры ГАЗ</a
+              >
+            </li>
+            <li>
+              <a
+                href="/catalog/startery/startery-dlya-traktorov/"
+                class="AsideBlock__item AsideBlock__item--link"
+                >Стартеры для тракторов</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <span class="AsideBlock__title">Комплектующие генераторов</span>
+          <ul class="AsideBlock">
+            <li>
+              <a
+                href="/catalog/komplektuyuschie-generatorov/"
+                class="AsideBlock__item AsideBlock__item--link"
+                >Все товары раздела</a
+              ><a
+                href="/catalog/komplektuyuschie-generatorov/komplektuyuschie-generatorov-dlya-traktorov/"
+                class="AsideBlock__item AsideBlock__item--link"
+                >Комплектующие генераторов для тракторов</a
+              >
+            </li>
+            <li>
+              <a
+                href="/catalog/komplektuyuschie-generatorov/komplektuyuschie-generatorov-maz/"
+                class="AsideBlock__item AsideBlock__item--link"
+                >Комплектующие генераторов МАЗ</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <span class="AsideBlock__title">Комплектующие стартеров</span>
+          <ul class="AsideBlock">
+            <li>
+              <a
+                href="/catalog/komplektuyuschie-starterov/"
+                class="AsideBlock__item AsideBlock__item--link"
+                >Все товары раздела</a
+              ><a
+                href="/catalog/komplektuyuschie-starterov/komplektuyuschie-starterov-dlya-traktorov/"
+                class="AsideBlock__item AsideBlock__item--link"
+                >Комплектующие стартеров для тракторов</a
+              >
+            </li>
+            <li>
+              <a
+                href="/catalog/komplektuyuschie-starterov/komplektuyuschie-starterov-kamaz/"
+                class="AsideBlock__item AsideBlock__item--link"
+                >Комплектующие стартеров КАМАЗ</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- filters -->
+      <div class="filters_wrap">
+        <div class="filters_title">
+          Фильтр по марке
+          <span></span>
+        </div>
+        <label class="filter_label">
+          <span class="filter_label__inp">
+            <input type="checkbox" />
+            <span>
+              <svg
+                width="10"
+                height="8"
+                viewBox="0 0 10 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 3.15966L4.77331 7L9 1"
+                  stroke="#313131"
+                  stroke-miterlimit="22.9256"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          </span>
+          <span class="filter_label__text"> КАМАЗ </span>
+        </label>
+        <label class="filter_label disabled">
+          <span class="filter_label__inp">
+            <input type="checkbox" disabled />
+            <span>
+              <svg
+                width="10"
+                height="8"
+                viewBox="0 0 10 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 3.15966L4.77331 7L9 1"
+                  stroke="#313131"
+                  stroke-miterlimit="22.9256"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          </span>
+          <span class="filter_label__text"> ГАЗ </span>
+        </label>
+        <label class="filter_label">
+          <span class="filter_label__inp">
+            <input type="checkbox" />
+            <span>
+              <svg
+                width="10"
+                height="8"
+                viewBox="0 0 10 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 3.15966L4.77331 7L9 1"
+                  stroke="#313131"
+                  stroke-miterlimit="22.9256"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          </span>
+          <span class="filter_label__text"> МАЗ </span>
+        </label>
+        <label class="filter_label">
+          <span class="filter_label__inp">
+            <input type="checkbox" />
+            <span>
+              <svg
+                width="10"
+                height="8"
+                viewBox="0 0 10 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 3.15966L4.77331 7L9 1"
+                  stroke="#313131"
+                  stroke-miterlimit="22.9256"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          </span>
+          <span class="filter_label__text"> Тракторы </span>
+        </label>
+      </div>
+      <button class="yellow_btn reset_btn hover_black">Сбросить фильтр</button>
+    </div>
+
+    <!-- cards -->
+    <div class="product-content">
+      <div class="mobile_filters btns_wrap">
+        <a
+          href="#"
+          class="catalog_btn yellow_btn hover_black link menu-toggle-item"
+          data-link="catalog"
+        >
+          <span class="icon">
+            <img src="/icons/catalog.svg" alt="" />
+            <img src="/icons/catalog.svg" alt="" />
+          </span>
+          <span class="text">Каталог</span>
+        </a>
+        <a
+          href="#"
+          class="filter_btn yellow_btn hover_black header_link link menu-toggle-item"
+          data-link="catalog"
+        >
+          <span class="icon">
+            <svg>
+              <use xlink:href="/icons/sprite.svg#filter"></use>
+            </svg>
+          </span>
+          <span class="text">Фильтр по марке</span>
+        </a>
+      </div>
+      <div class="options">
+        <button class="filter_btn">
+          <span class="close">
+            <svg width="19" height="19" viewBox="0 0 19 19" fill="none">
+              <use href="/icons/sprite.svg#close"></use>
+            </svg>
+          </span>
+        </button>
+      </div>
+
+      <div class="products">
+        <%= require('html-loader!../__card.html') %> <%=
+        require('html-loader!../__card.html') %> <%=
+        require('html-loader!../__card_no_photo.html') %> <%=
+        require('html-loader!../__card.html') %> <%=
+        require('html-loader!../__card.html') %> <%=
+        require('html-loader!../__card_no_photo.html') %> <%=
+        require('html-loader!../__card.html') %> <%=
+        require('html-loader!../__card.html') %>
+        <div class="card">
+          <a href="Сard.html" class="card_photo">
+            <img
+              src="/img/card02.png"
+              srcset="/icons/no_photo.svg"
+              data-srcset="/img/card02.png"
+              alt
+            />
+          </a>
+          <div class="card_body">
+            <a href="card.html" class="card_title">
+              Генератор 28 В 80А КАМАЗ-740, 740-11.240, 740.30, ЯМЗ-236, -236А,
+              -238, -238Б, -238Н (4001.3771-53) (аналог ЭЛЕКТРОМ) - GILBER
+              (аналог ЭЛЕКТРОМ) - GILBER
+            </a>
+            <div class="card_article card_item">
+              <div class="article_title item_title">Артикул</div>
+              <span class="dots"></span>
+              <div class="article_value item_value">296.112</div>
+            </div>
+            <div class="card_oem-number card_item">
+              <div class="oem-number_title item_title">OEM-номер</div>
+              <span class="dots"></span>
+              <a href="#" class="oem-number_value item_value link">
+                <span class="text"> 124.3778.007 </span>
+                <span class="arrow">
+                  <svg width="8" height="14" fill="none">
+                    <use href="/icons/sprite.svg#menu_arrow" />
+                  </svg>
+                </span>
+                <ul class="oem-number_list">
+                  <li class="oem-number_item">124.3778.007</li>
+                  <li class="oem-number_item">4001.3771-42</li>
+                  <li class="oem-number_item">5702.3701-20</li>
+                  <li class="oem-number_item">Г1000.10.1</li>
+                </ul>
+              </a>
+            </div>
+            <div class="card_applicability card_item">
+              <div class="applicability_title item_title">Применяемость</div>
+              <span class="dots"></span>
+              <a
+                href="#popup_table"
+                class="applicability_value popup_link item_value"
+              >
+                4 модели
+              </a>
+            </div>
+            <div class="card_price card_item">
+              <div class="price_title item_title">Розничная цена</div>
+              <span class="dots"></span>
+              <div class="price_value item_value">
+                <div class="text">6 890</div>
+                <div class="icon">&#8381;</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%= require('html-loader!../__card_no_photo.html') %> <%=
+        require('html-loader!../__card_no_photo.html') %> <%=
+        require('html-loader!../__card_no_photo.html') %> <%=
+        require('html-loader!../__card_no_photo.html') %>
+
+        <button class="yellow_btn hover_black show_btn">Показать ещё</button>
+
+        <div class="pagination_wrap">
+          <div class="Pagination">
+            <div class="Pagination__inner">
+              <a
+                href="?page=6"
+                class="Pagination__item Pagination__arrow"
+                data-page-number="6"
+              ></a
+              ><a href="/catalog/" class="Pagination__item" data-page-number="1"
+                >1</a
+              ><span class="Pagination__item Pagination__--"></span
+              ><a href="?page=4" class="Pagination__item" data-page-number="4"
+                >4</a
+              ><a href="?page=5" class="Pagination__item" data-page-number="5"
+                >5</a
+              ><a href="?page=6" class="Pagination__item" data-page-number="6"
+                >6</a
+              ><span
+                class="Pagination__item Pagination__item--active"
+                data-page-number="7"
+                >7</span
+              ><a href="?page=8" class="Pagination__item" data-page-number="8"
+                >8</a
+              ><a href="?page=9" class="Pagination__item" data-page-number="9"
+                >9</a
+              ><a href="?page=10" class="Pagination__item" data-page-number="10"
+                >10</a
+              ><span class="Pagination__item Pagination__--"></span
+              ><a href="?page=12" class="Pagination__item" data-page-number="12"
+                >12</a
+              ><a
+                href="?page=8"
+                class="Pagination__item Pagination__arrow"
+                data-page-number="8"
+              ></a>
+            </div>
+          </div>
+          <div class="not-found">
+            <div class="block_title">По вашему запросу ничего не найдено</div>
+            <div class="not-found_inner">
+              <!-- <div class="text t-1">не найдено</div>
+              <div class="text t-2">ни<span>чего</span></div> -->
+              <!-- <div class="magnifier">
+                <div class="magnifier_border">
+                  <div class="magnifier_body"></div>
+                </div>
+              </div> -->
+              <img src="/netcat_files/pages/not_found.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<%= require('html-loader!../__bottom.html') %>

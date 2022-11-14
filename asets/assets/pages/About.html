@@ -1,0 +1,239 @@
+<%= require('html-loader!../__top.html') %> <%=
+require('html-loader!../__menu.html') %> <%=
+require('html-loader!../__breadcrumbs.html') %>
+<main class="main">
+  <h1>О бренде</h1>
+  <div class="main-content">
+    <div class="bg">
+      <img
+        src="/img/upakovka_gilber.png"
+        srcset="/icons/1x2.png 540w, /img/upakovka_gilber.png 1000w"
+        sizes="(max-width: 540px) 1px,
+            1800px"
+        alt="Упаковка GILBER"
+      />
+    </div>
+    <!-- pictures -->
+    <div class="pictures">
+      <div class="certificates">
+        <div class="certificate cert-1">
+          <img
+            src="img/certificate01.png"
+            alt="Сертификат соответствия GILBER"
+          />
+        </div>
+        <div class="certificate cert-2">
+          <img
+            src="img/certificate01.png"
+            alt="Сертификат соответствия GILBER - 2"
+          />
+        </div>
+        <div class="certificate cert-3">
+          <img
+            src="img/certificate01.png"
+            alt="Сертификат соответствия GILBER - 3"
+          />
+        </div>
+      </div>
+      <div class="btn_wrap">
+        <button
+          class="yellow_btn hover_black popup_link pictures_btn"
+          data-link="popup"
+        >
+          Посмотреть сертификаты
+        </button>
+      </div>
+    </div>
+    <!-- popup -->
+    <div id="popup" class="popup">
+      <a href="#" class="btn_close link cloce_popup">
+        <img src="/icons/close.svg" alt="" />
+        <!-- @@include('../../img/icon/x.svg') -->
+      </a>
+      <div class="popup_wrap">
+        <div class="slider_pagination popup_content round"></div>
+
+        <a href="#" class="prev_btn link popup_content round btn">
+          <svg
+            width="17"
+            height="14"
+            viewBox="0 0 17 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6.97386 1L1 6.97441L7 13"
+              stroke-width="2"
+              stroke-miterlimit="22.9256"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <line
+              x1="1"
+              y1="-1"
+              x2="9"
+              y2="-1"
+              transform="matrix(-1 0 0 1 17 8)"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </a>
+
+        <a href="#" class="next_btn link popup_content round btn">
+          <svg
+            width="17"
+            height="14"
+            viewBox="0 0 17 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10.0261 1L16 6.97441L10 13"
+              stroke-width="2"
+              stroke-miterlimit="22.9256"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <line
+              x1="1"
+              y1="7"
+              x2="9"
+              y2="7"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </a>
+
+        <div class="popup_body">
+          <div class="slider_body popup_slider">
+            <div class="slide popup_content">
+              <img
+                class="tns-lazy-img"
+                src="img/1x2.png"
+                data-src="img/certificate04.jpg"
+                alt=""
+              />
+            </div>
+            <div class="slide popup_content">
+              <img
+                class="tns-lazy-img"
+                src="img/1x2.png"
+                data-src="img/certificate04.jpg"
+                alt=""
+              />
+            </div>
+            <div class="slide popup_content">
+              <img
+                class="tns-lazy-img"
+                src="img/1x2.png"
+                data-src="img/certificate04.jpg"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- text -->
+    <div class="text text_arrow">
+      <h4 class="block_title">Торговая марка GILBER</h4>
+      <p>
+        <svg
+          width="8"
+          height="14"
+          viewBox="0 0 8 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1.02614 1L7 6.97441L1 13"
+            stroke-width="2"
+            stroke-miterlimit="22.9256"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+
+        Создана для обеспечения покупателей высококачественными автозапчастями
+        для автомобилей КАМАЗ, ГАЗ и тракторов. Вся продукция производится в
+        Китае и является высококачественным аналогом оригинальных запчастей.
+        Заводы, на которых выпускается продукция GILBER, входят в топ лучших
+        производителей с высокотехнологичным современным производством. Рынками
+        сбыта продукции этих производителей помимо России, являются Япония,
+        Западная Европа и США.
+      </p>
+      <p>
+        <svg
+          width="8"
+          height="14"
+          viewBox="0 0 8 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1.02614 1L7 6.97441L1 13"
+            stroke-width="2"
+            stroke-miterlimit="22.9256"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+
+        ООО ГК «АВТОАЛЬФА» является правообладателем эксклюзивной торговой марки
+        GILBER. В 2019 г. было создано собственное представительство в Китае, г.
+        Шиянь, для поиска и постоянного аудита производственных предприятий, что
+        дает возможности контроля качества товара и сотрудничества лишь с
+        проверенными заводами-производителями, имеющими собственные
+        испытательные центры, сертификаты международных стандартов и уделяющими
+        внимание совершенствованию технологии производства. С 2022 года
+        представительство находится в г. Пекин.
+      </p>
+      <p>
+        <svg
+          width="8"
+          height="14"
+          viewBox="0 0 8 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1.02614 1L7 6.97441L1 13"
+            stroke-width="2"
+            stroke-miterlimit="22.9256"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+
+        Вся продукция GILBER имеет качественную и удобную упаковку,
+        обеспечивающую защиту изделия от повреждений во время транспортировки.
+        На этикетке указана уникальная информация о товаре.
+      </p>
+      <p>
+        <svg
+          width="8"
+          height="14"
+          viewBox="0 0 8 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1.02614 1L7 6.97441L1 13"
+            stroke-width="2"
+            stroke-miterlimit="22.9256"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+
+        Вся продукция торговой марки GILBER прошла испытания в аттестованной
+        лаборатории, что подтверждается сертификатами соответствия Евразийского
+        экономического союза.
+      </p>
+    </div>
+  </div>
+</main>
+<%= require('html-loader!../__bottom.html') %>
+<!-- @@include('./html/components/_footer.html') -->

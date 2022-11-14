@@ -1,0 +1,127 @@
+@import '../vars.scss';
+
+.main-content {
+  .search_list {
+    margin-top: 40px;
+
+    .article {
+      width: 190px;
+      flex: 0 0 190px;
+    }
+
+    .name {
+      width: 360px;
+      flex: 0 0 360px;
+    }
+
+    .article,
+    .name,
+    .scheme {
+      @include notebook {
+        width: 100%;
+        flex: 0 0 100%;
+        border-right: none;
+        padding: 0 !important;
+      }
+
+      padding: 10px 15px;
+      border-right: 1px solid $black10;
+    }
+
+    .scheme {
+      // width: 100%;
+      // flex: 0 0 100%;
+      flex-grow: 3;
+      border-right: none !important;
+    }
+
+    .search_titles {
+      @include notebook {
+        display: none;
+      }
+
+      display: flex;
+      width: 100%;
+      flex: 0 0 100%;
+      background: $yellow;
+
+      .search_title {
+        padding: 10px 15px;
+        border-right: 1px solid $black10;
+        font-weight: 700;
+      }
+    }
+
+    .search_item {
+      @include notebook {
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: 1px solid $grayL;
+        margin-top: 0;
+        padding: 15px 0 !important;
+
+        .search_title {
+          margin: 15px 0;
+        }
+      }
+
+      font-size: 14px;
+      display: flex;
+      border-bottom: 1px solid $black10;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 30px;
+      }
+
+      .search_artikul {
+        display: flex;
+        align-items: center;
+      }
+
+      .search_title {
+        display: flex;
+        align-items: center;
+      }
+
+      .search_breadcrumbs {
+        margin: 0;
+        padding: 10px 15px;
+
+        .breadcrumbs_item {
+          .breadcrumbs_item__text {
+            font-size: 14px;
+          }
+
+          .breadcrumbs_link {
+            span {
+              text-decoration: underline;
+              font-size: 14px;
+            }
+
+            &:hover span {
+              text-decoration: none;
+            }
+          }
+
+          &:last-child {
+            svg {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    .show_btn {
+      margin: 40px auto 0px;
+
+      &.none {
+        display: none;
+      }
+    }
+  }
+}

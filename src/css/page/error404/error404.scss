@@ -1,0 +1,80 @@
+@import '@/css/vars.scss';
+@include font("Allerta Stencil", "AllertaStencil-Regular", 400, "normal");
+
+#error-404 {
+  h1{
+    display: none;
+  }
+
+  .main-content {
+    .error_block {
+      display: flex;
+      justify-content: center;
+      margin-top: 35px;
+      position: relative;
+
+      .error_text {
+        @include pc {
+          left: 46.7%;
+        }
+
+        @include notebook {
+          left: 45%;
+        }
+
+        @include tablet {
+          font-size: 10vw;
+        }
+
+        @include phone_mid {
+          top: 55.4%;
+        }
+
+        font-family: 'Allerta Stencil',
+        sans-serif;
+        position: absolute;
+        color: $grayL;
+        font-size: 75px;
+        letter-spacing: 0.15em;
+        transform: rotate(13.28deg) translate(-50%, -50%);
+        left: 47%;
+        top: 55%;
+      }
+
+      img {
+        max-width: 100%;
+        display: flex;
+      }
+    }
+
+    .block_title {
+      margin-top: 55px;
+      text-align: center;
+    }
+
+    .btns_wrap {
+      @include phone_mid {
+        justify-content: space-around;
+      }
+
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+
+      .yellow_btn {
+        @include phone_mid {
+          margin-left: 0px;
+          flex: 0 0 120px;
+        }
+
+        white-space: nowrap;
+        flex: 0 0 160px;
+        margin-left: 60px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}

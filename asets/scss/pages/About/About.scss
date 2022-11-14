@@ -1,0 +1,241 @@
+@import '../../vars.scss';
+@import '../../components/popup.scss';
+@import '../../components/text_arrow.scss';
+@import '../../components/popup_slider.scss';
+@import '../../components/scroll_text.scss';
+
+.title,
+h1 {
+    // margin: 0px 0 25px;
+}
+
+#app {
+    overflow: hidden;
+}
+
+.main-content {
+    @include notebook {
+        flex-direction: column-reverse;
+    }
+
+    width: 100%;
+    display: flex;
+    position: relative;
+    margin-bottom: 20px;
+
+    .bg {
+        @include notebook {
+            transform: translateY(0);
+            top: auto;
+            bottom: 0;
+            right: 45%;
+        }
+
+        @include phone_big {
+            display: none;
+        }
+
+        position: absolute;
+        display: flex;
+        top: 0px;
+        transform: translateY(-120px);
+        right: 83%;
+
+        img {
+            @include notebook {
+                max-height: 770px;
+            }
+
+            @include tablet_mid {
+                min-height: 600px;
+                max-height: 650px;
+            }
+
+            max-height: 95vh;
+            min-height: 750px;
+        }
+    }
+
+    .pictures {
+        @include notebook {
+            width: auto;
+            flex: 0 0 100%;
+            align-items: flex-end;
+
+            .btn_wrap {
+                width: 50%;
+
+                .pictures_btn {
+                    margin: 0 auto;
+                }
+            }
+        }
+
+        @include tablet_mid {
+            .btn_wrap {
+                width: 70%;
+            }
+        }
+
+        @include phone_big {
+            align-items: center;
+
+            .certificates {
+                width: 340px;
+            }
+
+            .btn_wrap {
+                width: 340px;
+            }
+        }
+
+        flex: 0 0 50%;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        position: relative;
+        z-index: 30;
+
+        .certificates {
+            @include notebook {
+                width: 60%;
+            }
+
+            @include tablet_mid {
+                width: 340px;
+                min-height: 450px;
+            }
+
+            @include phone_big {
+                width: 340px;
+                min-height: 390px;
+            }
+
+            width: 100%;
+            min-height: 520px;
+            position: relative;
+
+            .certificate {
+                @include tablet_mid {
+                    width: 215px;
+                }
+
+                @include phone_big {
+                    width: 190px;
+                }
+
+                width: 255px;
+                position: absolute;
+
+                img {
+                    max-width: 100%;
+                }
+
+                &.cert-1 {
+                    @include tablet_mid {
+                        left: 35%;
+                        transform: translateX(-50%);
+                    }
+
+                    @include phone_big {
+                        left: 50%;
+                    }
+
+                    left: 17%;
+                    top: 0;
+                    // transform: translateX(-50%);
+                }
+
+                &.cert-2 {
+                    @include notebook {
+                        left: auto;
+                        right: 0;
+                        top: 16%;
+                        // transform: translate(0, -50%);
+                    }
+
+                    @include tablet_mid {
+                        // right: 15%;
+                    }
+
+                    left: 37%;
+                    top: 19%;
+                    // transform: translate(-50%, -50%);
+                }
+
+                &.cert-3 {
+                    @include tablet_mid {
+                        bottom: 3%;
+                    }
+
+                    bottom: 0;
+                    left: 4%;
+                }
+            }
+        }
+
+        .btn_wrap {
+            margin-top: 25px;
+
+            .pictures_btn {
+                padding: 8px 30px;
+                max-height: 50px;
+                max-width: 170px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &:hover {
+                    // box-shadow: 0px 0px 0px 1px $textGray;
+                    color: $textGray;
+                }
+            }
+        }
+    }
+
+    .text {
+        @include notebook {
+            width: 100%;
+            flex: 0 0 100%;
+            max-height: 100%;
+            margin-top: 0;
+            overflow: visible;
+            margin-bottom: 190px;
+
+            .block_title {
+                margin-top: 0;
+            }
+        }
+
+        @include tablet_mid {
+            margin-bottom: 140px;
+        }
+
+        @include phone_big {
+            margin-bottom: 40px;
+        }
+
+        max-height: 490px;
+        margin-top: 40px;
+        width: 50%;
+        flex: 0 0 50%;
+    }
+
+    .block_title {
+        margin-top: 0px;
+        text-align: left;
+
+        &~p {
+            margin-top: 30px;
+        }
+    }
+}
+
+.popup{
+    .popup_body{
+        width: 600px;
+        max-width: 600px;
+    }
+}

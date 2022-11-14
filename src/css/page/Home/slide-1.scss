@@ -1,0 +1,116 @@
+@import '../../vars.scss';
+@import './brakePoint.scss';
+
+// slide-1===========
+#home {
+  .main {
+    .slide {
+      &.sl-1 {
+        .slide_inner {
+          .slide_picture {
+            @include brake_point-3 {
+              &.p-1 img {
+                top: calc(50%);
+                transform: translateY(calc(-50% - 0px)) rotate(340deg);
+              }
+
+              &.p-2 img {
+                top: calc(50%);
+                transform: translateY(calc(-50% - 0px)) rotate(35deg);
+              }
+            }
+
+            @include brake_point-1 {
+              &.p-1 {
+                left: -30vw;
+              }
+
+              &.p-2 {
+                right: -30vw;
+              }
+            }
+
+            @include notebook {
+              &.p-1 img {
+                transform: translateY(-35%) rotate(340deg);
+              }
+
+              &.p-2 img {
+                transform: translateY(-35%) rotate(35deg);
+              }
+            }
+
+            @include tablet_sm {
+              &.p-1 {
+                left: -20vw;
+
+                img {
+                  top: 300px;
+                  transform: translateY(-40%) rotate(340deg);
+                }
+              }
+
+              &.p-2 img {
+                // transform: translateY(-40%) rotate(35deg);
+              }
+            }
+
+            @include phone {
+              &.p-1 img {
+                transform: translateY(-60%) rotate(340deg);
+              }
+            }
+
+            @include content_height {
+              &.p-1 img {
+                transform: translateY(-40%) rotate(340deg);
+              }
+
+              &.p-2 img {
+                transform: translateY(-40%) rotate(35deg);
+              }
+            }
+
+            @include phone_height {
+              &.p-1 img {
+                top: 40% !important;
+                transform: translateY(-38%) rotate(340deg) !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .sl-1 {
+    .p-1 {
+      left: -28vw;
+
+      img {
+        @media (max-width: 1825px) {
+          top: 200px;
+        }
+
+        transform: rotate(340deg);
+        left: -60px;
+        top: 175px;
+      }
+    }
+
+    .p-2 {
+      right: -28vw;
+
+      img {
+        @media (max-width: 1825px) {
+          top: 110px;
+        }
+
+        max-height: 106%;
+        transform: rotate(35deg);
+        top: 70px;
+        right: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.text_arrow {
+    p {
+        padding-left: 30px;
+        margin-top: 25px;
+        font-size: 14px;
+        // line-height: 18px;
+        line-height: 150%;
+        letter-spacing: normal;
+        position: relative;
+
+        &:first-child {
+            background: #000;
+            margin-top: 0;
+        }
+
+        svg {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            stroke: $gray;
+        }
+    }
+}
