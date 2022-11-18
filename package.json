@@ -14,6 +14,7 @@
     "lozad": "^1.16.0",
     "vue": "^3.2.37",
     "vue-colorful-slider": "^1.0.1",
+    "vue3-lazyload": "^0.3.6",
     "vueperslides": "^3.4.2"
   },
   "devDependencies": {

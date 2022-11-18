@@ -18,7 +18,7 @@
 				>1</a>
 				
 				<span class="Pagination__item Pagination__--"
-							v-if="page > 5"></span>
+							v-if="page > 6"></span>
 				
 				<template v-if="page + 4 < lastPage">
 					<a :href="'?page=' + setPage(index)"
@@ -80,6 +80,9 @@
 </template>
 
 <script>
+import setURL from "@/module/setURL.js";
+import {mapMutations, mapState} from "vuex";
+
 export default {
 	name: "pagination",
 	data() {
@@ -87,15 +90,25 @@ export default {
 			page: 1,
 			pagesAmount: 7,
 			showContent: false,
+			// params: this.catalogParams()
 		}
 	},
 	props: {
 		lastPage: {
 			type: Number,
 			default: 10,
-		}
+		},
+		pageLoad: {
+			type: Number,
+		},
 	},
 	methods: {
+		...mapState({
+			params: state => state.catalogStore.catalogParams
+		}),
+		...mapMutations({
+			setParam: 'catalogStore/setParam'
+		}),
 		setPage(index) {
 			return this.page < 5 ? index + 2 : index + this.page - 3
 		},
@@ -104,8 +117,18 @@ export default {
 			++this.page
 		},
 	},
+	mounted() {
+		setURL('page')
+		
+		if (this.pageLoad > this.lastPage) {
+			this.page = this.lastPage
+		} else {
+			this.page = Number(this.pageLoad)
+		}
+	},
 	watch: {
 		page(index) {
+			setURL('page')
 			if (!this.showContent) {
 				this.$emit('changepage', index)
 				this.showContent = false

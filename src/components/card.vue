@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import lozad from "lozad";
+
 export default {
 	name: "card",
 	data() {
@@ -59,8 +61,12 @@ export default {
 			// проверка для того что бы, когда объект пустой это ни чего не ломало
 			const price = str?.toLocaleString('ru-RU')
 			return price
-		}
+		},
 	},
+	mounted() {
+		const observeLazeImages = lozad('img[data-srcset]').observe;
+		setTimeout(observeLazeImages, 500)
+	}
 }
 </script>
 

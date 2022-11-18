@@ -44,7 +44,6 @@ export default {
 
         phone: (name) => {
           const PHONE_LENGTH = 18;
-					console.log(this.formObj[name]?.length === PHONE_LENGTH)
           if (this.formObj[name]?.length === PHONE_LENGTH) {
             this.setValid(name);
           } else {

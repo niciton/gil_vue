@@ -13,8 +13,8 @@
 							data-link="catalog"
 					>
           <span class="icon">
-            <img src="/icons/catalog.svg" alt=""/>
-            <img src="/icons/catalog.svg" alt=""/>
+            <img src="/icons/catalog.svg" alt />
+            <img src="/icons/catalog.svg" alt />
           </span>
 						<span class="text">Каталог</span>
 					</a>
@@ -50,7 +50,7 @@
 					<card-list :cardList="cards"/>
 					<pagination @showcontent="setShowContent($event)"
 											@changepage="params.page = $event"
-											:last-page="lastPage"/>
+					/>
 				</div>
 			</div>
 		</div>
@@ -65,9 +65,11 @@ import sidebar from "./sidebar.vue";
 
 import cardList from "@components/cardList.vue";
 import scrollTo from "@/module/scrollTo.js";
-import lozad from "lozad";
+
+import { mapMutations, mapState } from 'vuex'
 
 import back from "@/mixin/back.js";
+// import {catalog} from "@/store/catalog.js";
 
 export default {
 	name: "Catalog",
@@ -76,22 +78,24 @@ export default {
 			cards: [],
 			page: 1,
 			showContent: false,
-			params: {
-				amount: 5,
-				page: 1,
-			},
+			params: this.catalogParams(),
 			options: {},
 		}
 	},
 	mixins: [back],
 	methods: {
+		...mapState({
+			catalogParams: state => state.catalogStore.catalogParams,
+		}),
+		...mapMutations({
+			setParam: 'catalogStore/setParam',
+		}),
 		log(val) {
 			console.log(val)
 		},
 		getProduct() {
 			this.getCard(this.params).then((cards) => {
-				// console.log([...this.cards, ...cards])
-				if(this.showContent) {
+				if (this.showContent) {
 					this.cards = [...this.cards, ...cards]
 				} else {
 					this.cards = cards
@@ -99,25 +103,35 @@ export default {
 				this.showContent = false
 			})
 		},
-		setShowContent(){
+		setShowContent() {
 			this.showContent = true
 			this.params.page = this.params.page + 1
-		}
+		},
+		setParams() {
+			const paramArr = location.search.replace('?', '').split('&')
+			
+			paramArr.forEach(item => {
+				const name = item.split('=')[0]
+				const value = item.split('=')[1]
+				
+				this.params[name] = value
+			})
+		},
 	},
 	mounted() {
+		console.log(this.catalogParams())
 		this.getProduct()
+		this.setParams()
 		
-		// setTimeout(()=>{
-		// 	const observeLazeImages = lozad('img[data-srcset]').observe;
-		// 	observeLazeImages();
-		// }, 500)
-		
+		setTimeout(() => {
+			console.log(this.catalogParams())
+		}, 1000)
 	},
 	watch: {
 		params: {
 			handler(val) {
 				this.getProduct()
-				if(!this.showContent) scrollTo(this.$refs.products)
+				if (!this.showContent) scrollTo(this.$refs.products)
 				// this.getCard(val).then((cards) => {
 				// 	// this.log(cards)
 				// 	this.cards = cards
