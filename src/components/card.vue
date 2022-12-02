@@ -4,8 +4,10 @@
 	<div class="card">
 		<a href="Card.html" class="card_photo">
 			<img srcset="/icons/no_photo.svg"
+					 :src="cardData.Image"
 					 :data-srcset="cardData.Image"
 					 :alt="[cardData.Articul, cardData.Name, '225x150']"
+					 ref="img"
 			/>
 		</a>
 		<div class="card_body">
@@ -64,7 +66,7 @@ export default {
 		},
 	},
 	mounted() {
-		const observeLazeImages = lozad('img[data-srcset]').observe;
+		const observeLazeImages = lozad(this.$refs.img).observe;
 		setTimeout(observeLazeImages, 500)
 	}
 }

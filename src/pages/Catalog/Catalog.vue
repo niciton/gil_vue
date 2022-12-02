@@ -2,7 +2,7 @@
 	<default id="Catalog">
 		<div class="load_screen" :class="{load: loadContent}"></div>
 		<div class="main-content">
-			<sidebar/>
+			<sidebar />
 			
 			<!-- cards -->
 			<div class="product-content">
@@ -13,8 +13,8 @@
 							data-link="catalog"
 					>
           <span class="icon">
-            <img src="/icons/catalog.svg" alt />
-            <img src="/icons/catalog.svg" alt />
+            <img src="/icons/catalog.svg" alt/>
+            <img src="/icons/catalog.svg" alt/>
           </span>
 						<span class="text">Каталог</span>
 					</a>
@@ -48,9 +48,10 @@
 				</div>
 				<div class="products" ref="products">
 					<card-list :cardList="cards"/>
-					<pagination @showcontent="setShowContent($event)"
-											@changepage="params.page = $event"
-					/>
+<!--					<div class="assa">-->
+<!--						{{ params.lastPage }}-->
+<!--					</div>-->
+					<pagination v-if="params.lastPage > 2" />
 				</div>
 			</div>
 		</div>
@@ -65,8 +66,9 @@ import sidebar from "./sidebar.vue";
 
 import cardList from "@components/cardList.vue";
 import scrollTo from "@/module/scrollTo.js";
+import getURL from "@/module/getURL.js";
 
-import { mapMutations, mapState } from 'vuex'
+import {mapMutations, mapState} from 'vuex'
 
 import back from "@/mixin/back.js";
 // import {catalog} from "@/store/catalog.js";
@@ -76,8 +78,8 @@ export default {
 	data() {
 		return {
 			cards: [],
-			page: 1,
-			showContent: false,
+			amount: 10,
+			// showContent: false,
 			params: this.catalogParams(),
 			options: {},
 		}
@@ -86,59 +88,79 @@ export default {
 	methods: {
 		...mapState({
 			catalogParams: state => state.catalogStore.catalogParams,
+			showContent: state => state.catalogStore.showContent,
 		}),
 		...mapMutations({
 			setParam: 'catalogStore/setParam',
+			setShowContent: 'catalogStore/setShowContent',
+			deleteParam: 'catalogStore/deleteParam',
 		}),
-		log(val) {
-			console.log(val)
-		},
 		getProduct() {
 			this.getCard(this.params).then((cards) => {
-				if (this.showContent) {
+				if (this.showContent()) {
 					this.cards = [...this.cards, ...cards]
 				} else {
 					this.cards = cards
 				}
-				this.showContent = false
+				
+				this.setShowContent(false)
+				this.setURL()
 			})
-		},
-		setShowContent() {
-			this.showContent = true
-			this.params.page = this.params.page + 1
 		},
 		setParams() {
 			const paramArr = location.search.replace('?', '').split('&')
 			
-			paramArr.forEach(item => {
-				const name = item.split('=')[0]
-				const value = item.split('=')[1]
-				
-				this.params[name] = value
-			})
+			if (paramArr[0]){
+				paramArr.forEach(item => {
+					// console.log(paramArr)
+					const name = item.split('=')[0]
+					let val = String(item.split('=')[1])
+					
+					if (val.includes(',')) {
+						let valObj = {}
+						val.split(',').forEach(item => {
+							valObj[item] = 1
+						})
+						val = valObj
+					}
+					
+					// this.params[name] = value
+					this.setParam({
+						name: name,
+						val: val,
+					})
+				})
+			}
+			this.setURL()
+		},
+		setURL(){
+			
+			if (this.params.page == 1) {
+				this.deleteParam('page')
+			}
+			window.history.replaceState(null, null, getURL(this.params));
 		},
 	},
 	mounted() {
-		console.log(this.catalogParams())
 		this.getProduct()
 		this.setParams()
 		
 		setTimeout(() => {
 			console.log(this.catalogParams())
 		}, 1000)
+		console.log('catalog')
 	},
 	watch: {
 		params: {
 			handler(val) {
-				this.getProduct()
-				if (!this.showContent) scrollTo(this.$refs.products)
-				// this.getCard(val).then((cards) => {
-				// 	// this.log(cards)
-				// 	this.cards = cards
-				// })
+				console.log(val)
+				if (this.lockParams) {
+					this.getProduct()
+					if (!this.showContent()) scrollTo(this.$refs.products)
+				}
 			},
 			deep: true,
-		}
+		},
 	},
 	components: {
 		Default,

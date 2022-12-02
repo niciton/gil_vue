@@ -5,7 +5,7 @@ export default function (str){
 			'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o',
 			'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
 			'ф': 'f', 'х': 'h', 'ц': 'c', 'ч': 'ch', 'ш': 'sh',
-			'щ': 'shch', 'ы': 'y', 'э': 'e', 'ю': 'u', 'я': 'ya', ' ': '-'
+			'щ': 'shch', 'ы': 'y', 'й': 'i', 'э': 'e', 'ю': 'u', 'я': 'ya', ' ': '-'
 		},
 
 		n_str = [],
@@ -14,15 +14,15 @@ export default function (str){
 		len = strArr.length;
 
 
-	str = str.replace(/[ъь]+/g, '').replace(/й/g, 'i');
+	str = str.replace(/[ъь]+/g, '');
 
 	for ( let i = 0; i < len; ++i ) {
-		// n_str.push(
-		// 	ru[ strArr[i] ]
-		// 	|| ru[ strArr[i].toLowerCase() ] == undefined && strArr[i]
-		// 	|| ru[ strArr[i].toLowerCase() ].replace(/^(.)/, function ( match ) { return match.toUpperCase() })
-		// );
-		n_str.push(ru[ strArr[i].toLowerCase() ])
+		n_str.push(
+			ru[ strArr[i] ]
+			|| ru[ strArr[i].toLowerCase() ] == undefined && strArr[i]
+			|| ru[ strArr[i].toLowerCase() ].replace(/^(.)/, function ( match ) { return match.toUpperCase() })
+		);
+		// n_str.push(ru[ strArr[i].toLowerCase() ])
 	}
 
 	return n_str.join('');

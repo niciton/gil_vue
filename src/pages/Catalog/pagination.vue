@@ -1,5 +1,5 @@
 <template>
-	<button class="yellow_btn hover_black show_btn" v-if="page != lastPage" @click="addContent()">
+	<button class="yellow_btn hover_black show_btn" v-if="page != params.lastPage" @click="addContent()">
 		Показать ещё
 	</button>
 	<div class="pagination_wrap">
@@ -18,9 +18,9 @@
 				>1</a>
 				
 				<span class="Pagination__item Pagination__--"
-							v-if="page > 6"></span>
+							v-if="page > 5"></span>
 				
-				<template v-if="page + 4 < lastPage">
+				<template v-if="page + 4 < params.lastPage">
 					<a :href="'?page=' + setPage(index)"
 						 class="Pagination__item"
 						 @click.prevent="page = setPage(index)"
@@ -34,31 +34,31 @@
 					</a>
 				</template>
 				<template v-else>
-					<a :href="'?page=' + Number(lastPage - (pagesAmount - index))"
+					<a :href="'?page=' + Number(params.lastPage - (pagesAmount - index))"
 						 class="Pagination__item"
-						 @click.prevent="page = Number(lastPage - (pagesAmount - index))"
-						 :class="{'Pagination__item--active': page == Number(lastPage - (pagesAmount - index))}"
+						 @click.prevent="page = Number(params.lastPage - (pagesAmount - index))"
+						 :class="{'Pagination__item--active': page == Number(params.lastPage - (pagesAmount - index))}"
 						 v-for="(isActive, index) in pagesAmount"
 						 :key="index"
 					>
 						{{
-							Number(lastPage - (pagesAmount - index))
+							Number(params.lastPage - (pagesAmount - index))
 						}}
 					</a>
 				</template>
 				
 				<span class="Pagination__item Pagination__--"
-							v-if="lastPage - 4 > page"></span>
+							v-if="params.lastPage - 4 > page"></span>
 				
 				<a :href="'?page=' + lastPage"
 					 class="Pagination__item"
-					 :class="{'Pagination__item--active': page == lastPage}"
-					 @click.prevent="page = lastPage"
-				>{{ lastPage }}</a>
+					 :class="{'Pagination__item--active': page == params.lastPage}"
+					 @click.prevent="page = params.lastPage"
+				>{{ params.lastPage }}</a>
 				
 				<a :href="'?page=' + Number(page + 1)"
 					 class="Pagination__item Pagination__arrow"
-					 v-if="page != lastPage"
+					 v-if="page != params.lastPage"
 					 @click.prevent="page = Number(page + 1)"
 				></a>
 			</div>
@@ -87,10 +87,11 @@ export default {
 	name: "pagination",
 	data() {
 		return {
-			page: 1,
-			pagesAmount: 7,
-			showContent: false,
-			// params: this.catalogParams()
+			page: this.catalogParams().page || 1,
+			params: this.catalogParams(),
+			// showContent: false,
+			lastPage: this.catalogParams().lastPage || 1,
+			pagesAmount: this.lastPage > 7 ? 7 : this.lastPage
 		}
 	},
 	props: {
@@ -104,35 +105,51 @@ export default {
 	},
 	methods: {
 		...mapState({
-			params: state => state.catalogStore.catalogParams
+			catalogParams: state => state.catalogStore.catalogParams,
+			showContent: state => state.catalogStore.showContent,
 		}),
 		...mapMutations({
-			setParam: 'catalogStore/setParam'
+			setParam: 'catalogStore/setParam',
+			setShowContent: 'catalogStore/setShowContent',
 		}),
 		setPage(index) {
 			return this.page < 5 ? index + 2 : index + this.page - 3
 		},
 		addContent(){
-			this.$emit('showcontent')
-			++this.page
+			this.setParam({
+				name: 'page',
+				val: this.page++
+			})
+			this.setShowContent(true)
 		},
 	},
 	mounted() {
-		setURL('page')
+		// я беру из URL т.к. он монтируется после заполнения значения page
+		this.page = Number(location.search.split('page=')[1]?.split('&')[0]) || 1
+		// console.log(location.search.split('page=')[1]?.split('&')[0])
+		// setURL('page')
 		
-		if (this.pageLoad > this.lastPage) {
-			this.page = this.lastPage
-		} else {
-			this.page = Number(this.pageLoad)
-		}
+		// if (this.pageLoad > this.lastPage) {
+		// 	this.page = this.lastPage
+		// } else {
+		// 	this.page = Number(this.pageLoad)
+		// }
 	},
 	watch: {
 		page(index) {
-			setURL('page')
-			if (!this.showContent) {
-				this.$emit('changepage', index)
-				this.showContent = false
-			}
+			console.log(index)
+			this.setParam({
+				name: 'page',
+				val: index || 1,
+			})
+		},
+		params: {
+			handler(val){
+				// console.log(val)
+				// this.page = Number(val.page)
+			},
+			
+			deep: true
 		},
 	},
 }

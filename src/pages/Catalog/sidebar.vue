@@ -108,10 +108,40 @@
 				Фильтр по марке
 				<span></span>
 			</div>
-			<template v-for="filter in filters" :key="filters">
-				<label class="filter_label">
+			<div class="scroll-text">
+				<template v-for="filter in filters" :key="filter">
+					<label :class="['filter_label', {disabled: filter.disabled}]">
+						<span class="filter_label__inp">
+							<input type="checkbox"
+										 @change="setFilter"
+										 :checked="filter.id in filtersCheck"
+										 :disabled="filter.disabled"
+										 :value="filter.id"
+							/>
+							<span>
+								<svg width="10"
+										 height="8"
+										 viewBox="0 0 10 8"
+										 fill="none"
+										 xmlns="http://www.w3.org/2000/svg"
+								>
+									<path d="M1 3.15966L4.77331 7L9 1"
+												stroke="#313131"
+												stroke-miterlimit="22.9256"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+									/>
+								</svg>
+							</span>
+						</span>
+						<span class="filter_label__text">
+							{{ filter.val }}
+						</span>
+					</label>
+				</template>
+				<label class="filter_label disabled">
           <span class="filter_label__inp">
-            <input type="checkbox" value="filter.val" />
+            <input type="checkbox" disabled/>
             <span>
               <svg
 									width="10"
@@ -130,116 +160,106 @@
               </svg>
             </span>
           </span>
-					<span class="filter_label__text">
-						{{ filter.text }}
-					</span>
+					<span class="filter_label__text"> ГАЗ </span>
 				</label>
-			</template>
-			<label class="filter_label">
-          <span class="filter_label__inp">
-            <input type="checkbox" />
-            <span>
-              <svg
-									width="10"
-									height="8"
-									viewBox="0 0 10 8"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-							>
-                <path
-										d="M1 3.15966L4.77331 7L9 1"
-										stroke="#313131"
-										stroke-miterlimit="22.9256"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-								/>
-              </svg>
-            </span>
-          </span>
-				<span class="filter_label__text"> КАМАЗ </span>
-			</label>
-			<label class="filter_label disabled">
-          <span class="filter_label__inp">
-            <input type="checkbox" disabled />
-            <span>
-              <svg
-									width="10"
-									height="8"
-									viewBox="0 0 10 8"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-							>
-                <path
-										d="M1 3.15966L4.77331 7L9 1"
-										stroke="#313131"
-										stroke-miterlimit="22.9256"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-								/>
-              </svg>
-            </span>
-          </span>
-				<span class="filter_label__text"> ГАЗ </span>
-			</label>
-			<label class="filter_label">
-          <span class="filter_label__inp">
-            <input type="checkbox" />
-            <span>
-              <svg
-									width="10"
-									height="8"
-									viewBox="0 0 10 8"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-							>
-                <path
-										d="M1 3.15966L4.77331 7L9 1"
-										stroke="#313131"
-										stroke-miterlimit="22.9256"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-								/>
-              </svg>
-            </span>
-          </span>
-				<span class="filter_label__text"> МАЗ </span>
-			</label>
-			<label class="filter_label">
-          <span class="filter_label__inp">
-            <input type="checkbox" />
-            <span>
-              <svg
-									width="10"
-									height="8"
-									viewBox="0 0 10 8"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-							>
-                <path
-										d="M1 3.15966L4.77331 7L9 1"
-										stroke="#313131"
-										stroke-miterlimit="22.9256"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-								/>
-              </svg>
-            </span>
-          </span>
-				<span class="filter_label__text"> Тракторы </span>
-			</label>
+			</div>
 		</div>
-		<button class="yellow_btn reset_btn hover_black">Сбросить фильтр</button>
+		<button class="yellow_btn reset_btn hover_black"
+						v-if="Object.keys(filtersCheck).length">
+			Сбросить фильтр
+		</button>
 	</div>
+<!--		<div>Data: {{ Number(6) === true }}</div>-->
 </template>
 
 <script>
+import {mapMutations, mapState} from "vuex";
+import transliter from "@/module/transliter.js";
+
 export default {
 	name: "sidebar",
-	props: {
-		filters: {
-			type: Object,
-			default: {},
+	data() {
+		return {
+			filters: this.catalogFilters(),
+			filtersCheck: JSON.parse(sessionStorage.getItem('filtersCheck')) || {},
+			params: this.catalogParams()
 		}
+	},
+	methods: {
+		...mapState({
+			catalogFilters: state => state.catalogStore.catalogFilters,
+			catalogParams: state => state.catalogStore.catalogParams,
+		}),
+		...mapMutations({
+			setParam: 'catalogStore/setParam',
+			deleteParam: 'catalogStore/deleteParam',
+		}),
+		setFilter(e) {
+			const inp = e.target
+			const isChecked = inp.checked
+			
+			this.deleteParam('page')
+			// console.log(this.params)
+			
+			if (isChecked) {
+				this.filtersCheck[inp.value] = true
+				this.filtersCheck[Number(inp.value)] = 1
+				this.setParam({
+					name: 'mark',
+					val: this.filtersCheck
+				})
+			} else {
+				delete this.filtersCheck[inp.value]
+				delete this.filtersCheck[Number(inp.value)]
+				this.setParam({
+					name: 'mark',
+					val: this.filtersCheck
+				})
+			}
+			if (Object.keys(this.filtersCheck).length) {
+				sessionStorage.setItem('filtersCheck', JSON.stringify(this.filtersCheck))
+			} else {
+				sessionStorage.setItem('filtersCheck', JSON.stringify({}))
+			}
+		},
+		initFilter() {
+			this.filtersCheck = this.params.mark || {}
+			if (typeof this.filtersCheck !== 'object') {
+				this.filtersCheck = {
+					[this.filtersCheck]: 1
+				}
+			}
+			
+			for (const mark in this.filtersCheck) {
+				console.log(this.filters[mark])
+				// this.filters[mark].isChecked = true
+			}
+		},
+	},
+	// props: {
+	// 	filters: {
+	// 		type: Object,
+	// 		default: {},
+	// 	},
+	// },
+	watch: {
+		params: {
+			handler(val) {
+			},
+			deep: true,
+		}
+	},
+	// computed: {
+	// 	filters() {
+	// 		console.log(this.catalogParams())
+	// 		return this.params.filtersCheck;
+	// 	},
+	// },
+	mounted() {
+		for (let i = 0; i < 10; i++){
+			// console.log(String.fromCharCode(Math.random() * 100))
+		}
+		console.log(String.fromCharCode(1))
 	},
 }
 </script>

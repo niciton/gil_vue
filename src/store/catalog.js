@@ -1,20 +1,32 @@
 // import vuex from 'vuex'
 
 export const catalog = {
-	state: {
+	state: () => ({
 		catalogParams: {
-			amount: 11,
-			page: 1,
+			// page: 1,
 		},
+		catalogFilters: {},
 		showContent: false,
-	},
+	}),
 	mutations: {
-		setParams(sore, params){
-			sore.catalogParams = params
+		setParams(state, params){
+			state.catalogParams = params
 		},
-		setParam(sore, paramObj){
-			console.log(paramObj)
-			sore.catalogParams[paramObj.name] = paramObj.val
+		setParam(state, paramObj){
+			// console.log(paramObj)
+			state.catalogParams[paramObj.name] = paramObj.val
+		},
+		deleteParam(state, param){
+			delete state.catalogParams[param]
+		},
+		setShowContent(state, bool) {
+			state.showContent = bool
+		},
+		setFilter(state, filterObj){
+			state.catalogFilters[filterObj.name] = filterObj.val
+		},
+		setFilters(state, filters){
+			state.catalogFilters = filters
 		},
 	},
 	namespaced: true,
