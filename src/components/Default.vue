@@ -4,7 +4,7 @@
 			class="wrapper"
 			:style="[{paddingBottom: footerHeight + 'px'}, {paddingTop: headerHeight + 'px'}]">
     <app-header @size="headerHeight = $event"></app-header>
-    <menu-all></menu-all>
+    <menu-all />
     <div class="help-bar container">
       <ol class="breadcrumbs" v-if="$route.path != '/'">
         <li class="breadcrumbs_item">
@@ -28,6 +28,7 @@
       <slot></slot>
     </main>
     <app-footer @size="footerHeight = $event"></app-footer>
+		false
   </div>
 </template>
 

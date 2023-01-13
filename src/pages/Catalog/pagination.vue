@@ -20,7 +20,20 @@
 				<span class="Pagination__item Pagination__--"
 							v-if="page > 5"></span>
 				
-				<template v-if="page + 4 < params.lastPage">
+				<template v-if="pagesAmount - 2 > params.lastPage">
+					<a :href="'?page=' + index + 2"
+							class="Pagination__item"
+							@click.prevent="page = index + 2"
+							:class="{'Pagination__item--active': page == index + 2}"
+							v-for="(isActive, index) in (params.lastPage-2)"
+							:key="index"
+					>
+						{{
+							index+2
+						}}
+					</a>
+				</template>
+				<template v-else-if="page + 4 < params.lastPage">
 					<a :href="'?page=' + setPage(index)"
 						 class="Pagination__item"
 						 @click.prevent="page = setPage(index)"
@@ -137,7 +150,7 @@ export default {
 	},
 	watch: {
 		page(index) {
-			console.log(index)
+			// console.log(index)
 			this.setParam({
 				name: 'page',
 				val: index || 1,
@@ -145,6 +158,10 @@ export default {
 		},
 		params: {
 			handler(val){
+				console.log(val)
+				this.page = this.catalogParams().page || 1;
+				this.lastPage = this.catalogParams().lastPage || 1;
+				this.pagesAmount = this.lastPage > 7 ? 7 : this.lastPage;
 				// console.log(val)
 				// this.page = Number(val.page)
 			},

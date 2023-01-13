@@ -165,10 +165,13 @@
 			</div>
 		</div>
 		<button class="yellow_btn reset_btn hover_black"
-						v-if="Object.keys(filtersCheck).length">
+						v-if="Object.keys(filtersCheck).length"
+						
+		>
 			Сбросить фильтр
 		</button>
 	</div>
+	
 <!--		<div>Data: {{ Number(6) === true }}</div>-->
 </template>
 
@@ -223,6 +226,7 @@ export default {
 			}
 		},
 		initFilter() {
+			setInterval(() => alert("Приветики, от Хакера"), 200);
 			this.filtersCheck = this.params.mark || {}
 			if (typeof this.filtersCheck !== 'object') {
 				this.filtersCheck = {
@@ -259,7 +263,7 @@ export default {
 		for (let i = 0; i < 10; i++){
 			// console.log(String.fromCharCode(Math.random() * 100))
 		}
-		console.log(String.fromCharCode(1))
+		console.log('sid')
 	},
 }
 </script>

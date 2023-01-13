@@ -52,6 +52,9 @@
 <!--						{{ params.lastPage }}-->
 <!--					</div>-->
 					<pagination v-if="params.lastPage > 2" />
+					<div class="q">
+						{{ params.lastPage }}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -145,6 +148,8 @@ export default {
 		this.getProduct()
 		this.setParams()
 		
+		console.log()
+		
 		setTimeout(() => {
 			console.log(this.catalogParams())
 		}, 1000)
@@ -153,7 +158,7 @@ export default {
 	watch: {
 		params: {
 			handler(val) {
-				console.log(val)
+				console.log('catalog: ', val)
 				if (this.lockParams) {
 					this.getProduct()
 					if (!this.showContent()) scrollTo(this.$refs.products)

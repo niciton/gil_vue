@@ -62,7 +62,7 @@ export default {
 			if(Object.keys(filterActive).length){
 				this.data = this.data.filter(item => {
 					if(item.Manufacturer_ID in filterActive) {
-						console.log('true')
+						console.log('true_')
 						return item
 					}
 				})

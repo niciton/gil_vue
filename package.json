@@ -12,6 +12,7 @@
     "@vitejs/plugin-legacy": "^2.2.0",
     "axios": "^1.1.3",
     "lozad": "^1.16.0",
+    "tiny-slider": "^2.9.4",
     "vue": "^3.2.37",
     "vue-colorful-slider": "^1.0.1",
     "vue3-lazyload": "^0.3.6",

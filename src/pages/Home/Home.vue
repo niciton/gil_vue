@@ -11,9 +11,9 @@
 							     :class="'p-' + Number(1 + iImg)">
 								<img :src="noneImg" :data-src="img.image" alt>
 							</div>
-							<a :href="slide.url" class="slide_btn">
+							<router-link :to="slide.url" class="slide_btn">
 								{{ slide.text }}
-							</a>
+							</router-link>
 						</div>
 					</template>
 				</vueper-slide>
@@ -75,7 +75,7 @@ export default {
 						{image: generator_left},
 						{image: generator_right},
 					],
-					url: '#cal',
+					url: '/catalog',
 					load: true,
 					text: 'генераторы',
 				},

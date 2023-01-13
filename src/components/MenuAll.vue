@@ -132,7 +132,7 @@
 						</li>
 					</ul>
 				</li>
-				<li><span class="AsideBlock__title is-active"><span></span>Комплектующие стартеров</span>
+				<li><span class="AsideBlock__title"><span></span>Комплектующие стартеров</span>
 					<ul class="AsideBlock">
 						<li><a href="/catalog/komplektuyuschie-starterov/" class="AsideBlock__item AsideBlock__item--link">Все
 							товары
